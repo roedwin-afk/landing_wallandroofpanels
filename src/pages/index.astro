@@ -1,17 +1,33 @@
 ---
+import Layout from '../layouts/Layout.astro';
+import { useTranslations } from '../i18n/utils';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import Stats from '../components/Stats.astro';
+import Products from '../components/Products.astro'
+import Features from '../components/Features.astro';
+import UseCases from '../components/UseCases.astro';
+import Specs from '../components/Specs.astro';
+import CTA from '../components/CTA.astro';
+import Footer from '../components/Footer.astro';
 
+const t = useTranslations('en');
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout
+  title="Wall & Roof Panels — High Performance Structural Insulated Panels"
+  description="Fast installation, superior thermal insulation and structural strength for industrial buildings, warehouses and commercial facilities."
+>
+	<Nav t={t} lang="en" />
+
+	<Hero t={t} />
+	<Stats t={t} />
+	<Products t={t} />
+	<Features t={t} />
+	<UseCases t={t} />
+	<Specs t={t} />
+	<CTA t={t} />
+	
+	<Footer t={t} />
+
+</Layout>

@@ -1,0 +1,113 @@
+---
+import type { TranslationKeys } from "../i18n/en";
+
+interface Props {
+  t: TranslationKeys;
+}
+
+const { t } = Astro.props;
+---
+
+<footer class="footer">
+  <div class="footer__inner">
+    <a href="#top" class="footer__brand" aria-label={t.footer.brand}>
+      Wall<span>&</span>Roof<span>Panels</span>.com
+    </a>
+
+    <nav class="footer__links" aria-label="Footer navigation">
+      <a href="#products">{t.footer.products}</a>
+      <a href="#applications">{t.footer.applications}</a>
+      <a href="#specs">{t.footer.specs}</a>
+      <a href="/files/technical-sheet.pdf" download>{t.footer.downloads}</a>
+      <a href="#contact">{t.footer.contact}</a>
+    </nav>
+
+    <p class="footer__copy">{t.footer.copy}</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: #0c1a14;
+    padding: 1.5rem var(--container-padding, 1.25rem);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .footer__inner {
+    width: min(1200px, 100%);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .footer__brand {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--white);
+    white-space: nowrap;
+  }
+
+  .footer__brand span {
+    color: var(--green-light);
+  }
+
+  .footer__links {
+    display: flex;
+    justify-content: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  .footer__links a {
+    font-size: 0.8rem;
+    line-height: 1.4;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.48);
+    transition: color 0.2s ease;
+  }
+
+  .footer__links a:hover {
+    color: var(--green-light);
+  }
+
+  .footer__copy {
+    margin: 0;
+    font-size: 0.72rem;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.32);
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 900px) {
+    .footer__inner {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+
+    .footer__links {
+      justify-content: center;
+    }
+
+    .footer__copy {
+      text-align: center;
+      white-space: normal;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .footer {
+      padding: 1.75rem var(--container-padding, 1.25rem);
+    }
+
+    .footer__links {
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+  }
+</style>

@@ -1,0 +1,33 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { useTranslations } from '../../i18n/utils';
+import Nav from '../../components/Nav.astro';
+import Hero from '../../components/Hero.astro';
+import Stats from '../../components/Stats.astro';
+import Products from '../../components/Products.astro';
+import Features from '../../components/Features.astro';
+import UseCases from '../../components/UseCases.astro';
+import Specs from '../../components/Specs.astro';
+import CTA from '../../components/CTA.astro';
+import Footer from '../../components/Footer.astro';
+
+const t = useTranslations('es');
+---
+
+<Layout
+  title="Paneles para Paredes y Techos — Aislamiento Industrial de Alto Rendimiento"
+  description="Instalación rápida, aislamiento térmico superior y resistencia estructural para edificios industriales, bodegas e instalaciones comerciales."
+>
+  <Nav t={t} lang="es" />
+
+  <Hero t={t} />
+  <Stats t={t} />
+  <Products t={t} />
+  <Features t={t} />
+  <UseCases t={t} />
+  <Specs t={t} />
+  <CTA t={t} />
+  
+  <Footer t={t} />
+
+</Layout>

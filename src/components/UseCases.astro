@@ -1,0 +1,454 @@
+---
+import type { TranslationKeys } from "../i18n/en";
+import {
+    Factory,
+    Package,
+    Wrench,
+    Store,
+    Building2,
+    ShoppingCart,
+    Snowflake,
+    Refrigerator,
+    Truck,
+    Warehouse,
+    Tractor,
+    Leaf,
+} from "lucide-astro";
+
+interface Props {
+    t: TranslationKeys;
+}
+
+const { t } = Astro.props;
+
+const tabs = [
+    {
+        id: "industrial",
+        label: t.useCases.tab1,
+        items: [
+            {
+                icon: Factory,
+                title: t.useCases.industrial_1_title,
+                desc: t.useCases.industrial_1_desc,
+            },
+            {
+                icon: Package,
+                title: t.useCases.industrial_2_title,
+                desc: t.useCases.industrial_2_desc,
+            },
+            {
+                icon: Wrench,
+                title: t.useCases.industrial_3_title,
+                desc: t.useCases.industrial_3_desc,
+            },
+        ],
+    },
+    {
+        id: "commercial",
+        label: t.useCases.tab2,
+        items: [
+            {
+                icon: Store,
+                title: t.useCases.commercial_1_title,
+                desc: t.useCases.commercial_1_desc,
+            },
+            {
+                icon: Building2,
+                title: t.useCases.commercial_2_title,
+                desc: t.useCases.commercial_2_desc,
+            },
+            {
+                icon: ShoppingCart,
+                title: t.useCases.commercial_3_title,
+                desc: t.useCases.commercial_3_desc,
+            },
+        ],
+    },
+    {
+        id: "cold-storage",
+        label: t.useCases.tab3,
+        items: [
+            {
+                icon: Snowflake,
+                title: t.useCases.cold_1_title,
+                desc: t.useCases.cold_1_desc,
+            },
+            {
+                icon: Refrigerator,
+                title: t.useCases.cold_2_title,
+                desc: t.useCases.cold_2_desc,
+            },
+            {
+                icon: Truck,
+                title: t.useCases.cold_3_title,
+                desc: t.useCases.cold_3_desc,
+            },
+        ],
+    },
+    {
+        id: "agricultural",
+        label: t.useCases.tab4,
+        items: [
+            {
+                icon: Warehouse,
+                title: t.useCases.agri_1_title,
+                desc: t.useCases.agri_1_desc,
+            },
+            {
+                icon: Tractor,
+                title: t.useCases.agri_2_title,
+                desc: t.useCases.agri_2_desc,
+            },
+            {
+                icon: Leaf,
+                title: t.useCases.agri_3_title,
+                desc: t.useCases.agri_3_desc,
+            },
+        ],
+    },
+];
+---
+
+<section class="use-cases" id="applications" data-use-cases>
+    <div class="use-cases__inner">
+        <div class="use-cases__head">
+            <p class="use-cases__eyebrow">{t.useCases.eyebrow}</p>
+            <h2 class="use-cases__title">{t.useCases.title}</h2>
+        </div>
+
+        <div
+            class="use-cases__tabs"
+            role="tablist"
+            aria-label="Use case categories"
+        >
+            {
+                tabs.map((tab, index) => (
+                    <button
+                        class={`use-cases__tab ${index === 0 ? "is-active" : ""}`}
+                        type="button"
+                        role="tab"
+                        aria-selected={index === 0 ? "true" : "false"}
+                        aria-controls={`panel-${tab.id}`}
+                        id={`tab-${tab.id}`}
+                        data-tab-trigger
+                        data-tab-id={tab.id}
+                    >
+                        {tab.label}
+                    </button>
+                ))
+            }
+        </div>
+
+        <div class="use-cases__panels">
+            {
+                tabs.map((tab, index) => (
+                    <div
+                        class={`use-cases__panel ${index === 0 ? "is-active" : ""}`}
+                        id={`panel-${tab.id}`}
+                        role="tabpanel"
+                        aria-labelledby={`tab-${tab.id}`}
+                        data-tab-panel
+                        data-tab-id={tab.id}
+                        hidden={index === 0 ? true : true}
+                    >
+                        <div class="use-cases__grid">
+                            {tab.items.map((item) => {
+                                const Icon = item.icon;
+
+                                return (
+                                    <article class="use-card">
+                                        <div
+                                            class="use-card__icon"
+                                            aria-hidden="true"
+                                        >
+                                            <Icon size={22} strokeWidth={2} />
+                                        </div>
+
+                                        <h3 class="use-card__title">
+                                            {item.title}
+                                        </h3>
+                                        <p class="use-card__desc">
+                                            {item.desc}
+                                        </p>
+                                    </article>
+                                );
+                            })}
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>
+
+<script>
+    const root = document.querySelector(
+        "[data-use-cases]",
+    ) as HTMLElement | null;
+
+    if (root) {
+        const triggers = Array.from(
+            root.querySelectorAll<HTMLElement>("[data-tab-trigger]"),
+        );
+
+        const panels = Array.from(
+            root.querySelectorAll<HTMLElement>("[data-tab-panel]"),
+        );
+
+        const activateTab = (tabId: string) => {
+            triggers.forEach((trigger) => {
+                const isActive = trigger.dataset.tabId === tabId;
+                trigger.classList.toggle("is-active", isActive);
+                trigger.setAttribute(
+                    "aria-selected",
+                    isActive ? "true" : "false",
+                );
+                trigger.setAttribute("tabindex", isActive ? "0" : "-1");
+            });
+
+            panels.forEach((panel) => {
+                const isActive = panel.dataset.tabId === tabId;
+                panel.classList.toggle("is-active", isActive);
+
+                if (isActive) {
+                    panel.removeAttribute("hidden");
+                } else {
+                    panel.setAttribute("hidden", "");
+                }
+            });
+        };
+
+        triggers.forEach((trigger) => {
+            trigger.addEventListener("click", () => {
+                const tabId = trigger.dataset.tabId;
+                if (tabId) activateTab(tabId);
+            });
+
+            trigger.addEventListener("keydown", (event: KeyboardEvent) => {
+                const currentIndex = triggers.indexOf(trigger);
+
+                if (event.key === "ArrowRight") {
+                    event.preventDefault();
+                    const nextIndex = (currentIndex + 1) % triggers.length;
+                    triggers[nextIndex]?.focus();
+                    triggers[nextIndex]?.click();
+                }
+
+                if (event.key === "ArrowLeft") {
+                    event.preventDefault();
+                    const prevIndex =
+                        (currentIndex - 1 + triggers.length) % triggers.length;
+                    triggers[prevIndex]?.focus();
+                    triggers[prevIndex]?.click();
+                }
+
+                if (event.key === "Home") {
+                    event.preventDefault();
+                    triggers[0]?.focus();
+                    triggers[0]?.click();
+                }
+
+                if (event.key === "End") {
+                    event.preventDefault();
+                    triggers[triggers.length - 1]?.focus();
+                    triggers[triggers.length - 1]?.click();
+                }
+            });
+        });
+
+        const firstTabId = triggers[0]?.dataset.tabId;
+        if (firstTabId) activateTab(firstTabId);
+    }
+</script>
+
+<style>
+    .use-cases {
+        padding: 5rem 0;
+        background:
+            radial-gradient(
+                circle at top right,
+                rgba(151, 196, 89, 0.08),
+                transparent 24%
+            ),
+            linear-gradient(
+                135deg,
+                var(--green-dark) 0%,
+                var(--green-mid) 65%,
+                #183f23 100%
+            );
+    }
+
+    .use-cases__inner {
+        width: min(1200px, calc(100% - 2rem));
+        margin: 0 auto;
+    }
+
+    .use-cases__head {
+        max-width: 42rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .use-cases__eyebrow {
+        margin: 0 0 0.5rem;
+        font-size: 0.72rem;
+        line-height: 1;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        font-weight: 600;
+        color: var(--green-light);
+    }
+
+    .use-cases__title {
+        margin: 0;
+        font-family: var(--font-display);
+        font-size: clamp(2.2rem, 5vw, 3.2rem);
+        line-height: 0.98;
+        font-weight: 700;
+        color: var(--white);
+        text-transform: uppercase;
+    }
+
+    .use-cases__tabs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0;
+        margin-bottom: 1.5rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .use-cases__tab {
+        appearance: none;
+        border: none;
+        border-bottom: 2px solid transparent;
+        background: transparent;
+        color: rgba(255, 255, 255, 0.55);
+        font-family: var(--font-body);
+        font-size: 0.92rem;
+        font-weight: 600;
+        line-height: 1;
+        padding: 0.85rem 1rem;
+        margin-bottom: -1px;
+        transition:
+            color 0.2s ease,
+            border-color 0.2s ease,
+            background-color 0.2s ease;
+    }
+
+    .use-cases__tab:hover {
+        color: rgba(255, 255, 255, 0.82);
+    }
+
+    .use-cases__tab.is-active {
+        color: var(--green-light);
+        border-bottom-color: var(--green-light);
+    }
+
+    .use-cases__tab:focus-visible {
+        outline: 2px solid var(--green-light);
+        outline-offset: 2px;
+        border-radius: 0.35rem 0.35rem 0 0;
+    }
+
+    .use-cases__panel[hidden] {
+        display: none;
+    }
+
+    .use-cases__grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.9rem;
+    }
+
+    .use-card {
+        min-height: 14rem;
+        padding: 1.25rem;
+        border-radius: 1rem;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.09);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+        backdrop-filter: blur(4px);
+        transition:
+            transform 0.2s ease,
+            border-color 0.2s ease,
+            background-color 0.2s ease;
+    }
+
+    .use-card:hover {
+        transform: translateY(-3px);
+        border-color: rgba(151, 196, 89, 0.28);
+        background: rgba(255, 255, 255, 0.07);
+    }
+
+    .use-card__icon {
+        margin-bottom: 0.9rem;
+        font-size: 1.4rem;
+        line-height: 1;
+    }
+
+    .use-card__title {
+        margin: 0 0 0.45rem;
+        font-family: var(--font-display);
+        font-size: 1.45rem;
+        line-height: 1;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: var(--white);
+    }
+
+    .use-card__desc {
+        margin: 0;
+        font-size: 0.92rem;
+        line-height: 1.65;
+        color: rgba(255, 255, 255, 0.64);
+    }
+
+    @media (max-width: 960px) {
+        .use-cases {
+            padding: 4rem 0;
+        }
+
+        .use-cases__grid {
+            grid-template-columns: 1fr;
+        }
+
+        .use-card {
+            min-height: auto;
+        }
+    }
+
+    @media (max-width: 640px) {
+        .use-cases__inner {
+            width: min(100% - 1.25rem, 1200px);
+        }
+
+        .use-cases__head {
+            margin-bottom: 1.2rem;
+        }
+
+        .use-cases__tabs {
+            overflow-x: auto;
+            flex-wrap: nowrap;
+            scrollbar-width: thin;
+        }
+
+        .use-cases__tab {
+            flex: 0 0 auto;
+            padding: 0.8rem 0.85rem;
+            font-size: 0.88rem;
+            white-space: nowrap;
+        }
+
+        .use-card {
+            padding: 1.1rem 1rem;
+        }
+
+        .use-card__title {
+            font-size: 1.28rem;
+        }
+
+        .use-card__desc {
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+    }
+</style>
