@@ -174,4 +174,21 @@ export const es: TranslationKeys = {
     read_more: 'Leer artículo',
     back: '← Volver a artículos',
   },
+  form_contact: {
+    eyebrow: "Contacto",
+    title: "Hablemos de tu proyecto",
+    description:
+      "Envíanos los detalles de tu proyecto y nuestro equipo te ayudará a elegir el sistema de panel aislado adecuado para tu aplicación.",
+    fields: {
+      firstName: "Nombre",
+      lastName: "Apellido",
+      email: "Correo electrónico",
+      email_placeholder: "tu@empresa.com",
+      phone: "Teléfono",
+      phone_placeholder: "+52 000 000 0000",
+      message: "Mensaje",
+      message_placeholder: "Cuéntanos sobre tu proyecto, medidas, ubicación o requisitos técnicos.",
+    },
+    submit: "Enviar mensaje",
+  },
 };

@@ -1,0 +1,100 @@
+---
+import type { TranslationKeys } from "../i18n/en";
+
+interface Props {
+  t: TranslationKeys;
+  lang?: "en" | "es";
+  variant?: "nav" | "footer";
+}
+
+const { t, lang = "en", variant = "nav" } = Astro.props;
+
+const contactHref = lang === "es" ? "/es/contact/" : "/contact/";
+
+const links = [
+  {
+    label: t.footer.products,
+    href: "#products",
+  },
+  {
+    label: t.footer.applications,
+    href: "#applications",
+  },
+  {
+    label: t.footer.specs,
+    href: "#specs",
+  },
+  {
+    label: t.footer.downloads,
+    href: "/files/technical-sheet.pdf",
+    download: true,
+  },
+  {
+    label: t.footer.contact,
+    href: contactHref,
+  },
+];
+---
+
+<nav class:list={["menu", `menu--${variant}`]} aria-label="Main navigation">
+  {
+    links.map((link) => (
+      <a
+        href={link.href}
+        download={link.download ? true : undefined}
+        class="menu__link"
+      >
+        {link.label}
+      </a>
+    ))
+  }
+</nav>
+
+<style>
+  .menu {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  .menu__link {
+    font-size: 0.85rem;
+    line-height: 1.4;
+    font-weight: 600;
+    transition: color 0.2s ease;
+  }
+
+  .menu--nav {
+    justify-content: center;
+  }
+
+  .menu--nav .menu__link {
+    color: rgba(255, 255, 255, 0.72);
+  }
+
+  .menu--nav .menu__link:hover {
+    color: var(--green-light);
+  }
+
+  .menu--footer {
+    justify-content: center;
+  }
+
+  .menu--footer .menu__link {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.48);
+  }
+
+  .menu--footer .menu__link:hover {
+    color: var(--green-light);
+  }
+
+  @media (max-width: 640px) {
+    .menu--footer {
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+  }
+</style>

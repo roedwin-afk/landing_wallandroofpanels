@@ -1,11 +1,13 @@
 ---
 import type { TranslationKeys } from "../i18n/en";
+import Menu from "./Menu.astro";
 
 interface Props {
   t: TranslationKeys;
+  lang: "en" | "es";
 }
 
-const { t } = Astro.props;
+const { t, lang } = Astro.props;
 ---
 
 <footer class="footer">
@@ -14,13 +16,7 @@ const { t } = Astro.props;
       Wall<span>&</span>Roof<span>Panels</span>.com
     </a>
 
-    <nav class="footer__links" aria-label="Footer navigation">
-      <a href="#products">{t.footer.products}</a>
-      <a href="#applications">{t.footer.applications}</a>
-      <a href="#specs">{t.footer.specs}</a>
-      <a href="/files/technical-sheet.pdf" download>{t.footer.downloads}</a>
-      <a href="#contact">{t.footer.contact}</a>
-    </nav>
+    <Menu t={t} lang={lang} variant="footer" />
 
     <p class="footer__copy">{t.footer.copy}</p>
   </div>
@@ -53,25 +49,6 @@ const { t } = Astro.props;
   }
 
   .footer__brand span {
-    color: var(--green-light);
-  }
-
-  .footer__links {
-    display: flex;
-    justify-content: center;
-    gap: 1.25rem;
-    flex-wrap: wrap;
-  }
-
-  .footer__links a {
-    font-size: 0.8rem;
-    line-height: 1.4;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.48);
-    transition: color 0.2s ease;
-  }
-
-  .footer__links a:hover {
     color: var(--green-light);
   }
 

@@ -1,0 +1,18 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { useTranslations } from '../i18n/utils';
+import Nav from "../components/Nav.astro";
+import ContactForm from "../components/ContactForm.astro";
+import Footer from "../components/Footer.astro";
+
+const t = useTranslations('en');
+---
+
+<Layout 
+  title="Contact | Cold Room Panels & Industrial Insulation" 
+  description="Request a quote for polyurethane cold room panels. We provide industrial insulation solutions in El Salvador and Central America."
+>
+  <Nav t={t} lang="en" />
+  <ContactForm t={t} />
+  <Footer t={t} lang="en" />
+</Layout>

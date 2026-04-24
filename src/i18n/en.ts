@@ -182,6 +182,23 @@ export const en = {
     read_more: 'Read article',
     back: '← Back to articles',
   },
+  form_contact: {
+    eyebrow: "Contact us",
+    title: "Let’s talk about your project",
+    description:
+      "Send us your project details and our team will help you choose the right insulated panel system for your application.",
+    fields: {
+      firstName: "First name",
+      lastName: "Last name",
+      email: "Email",
+      email_placeholder: "you@company.com",
+      phone: "Phone",
+      phone_placeholder: "+1 000 000 0000",
+      message: "Message",
+      message_placeholder: "Tell us about your project, dimensions, location, or technical requirements.",
+    },
+    submit: "Send message",
+  },
 } as const;
 
 // Convierte todos los string literals a string genérico
