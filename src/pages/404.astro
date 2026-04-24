@@ -1,0 +1,70 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { useTranslations } from '../i18n/utils';
+
+const t = useTranslations('en');
+---
+
+<Layout
+  title="Page Not Found | Panel For Cold Room"
+  description="The page you are looking for does not exist."
+>
+  <Nav {t} lang="en" />
+
+  <div class="notfound">
+    <h1 class="notfound__code">404</h1>
+    <p class="notfound__title">Page Not Found</p>
+    <p class="notfound__desc">The page you are looking for does not exist or has been moved.</p>
+    <a href="/" class="notfound__btn">← Back to Home</a>
+  </div>
+
+  <Footer {t} lang="en" />
+</Layout>
+
+<style>
+  .notfound {
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    gap: 1rem;
+  }
+
+  .notfound__code {
+    font-size: 6rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    line-height: 1;
+  }
+
+  .notfound__title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  .notfound__desc {
+    color: #555;
+    font-size: 1rem;
+  }
+
+  .notfound__btn {
+    display: inline-block;
+    margin-top: 1rem;
+    background-color: var(--color-accent);
+    color: var(--color-white);
+    padding: 0.85rem 2rem;
+    border-radius: 4px;
+    font-weight: 700;
+    transition: opacity 0.2s;
+  }
+
+  .notfound__btn:hover {
+    opacity: 0.9;
+  }
+</style>

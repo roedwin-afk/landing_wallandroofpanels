@@ -174,6 +174,14 @@ export const en = {
     privacy: "Privacy policy",
     copy: "© 2026 WallAndRoofPanels.com. All rights reserved.",
   },
+  menu: {
+    products: "Products",
+    applications: "Applications",
+    specs: "Technical specs",
+    contact: "Contact",
+    downloads: "Downloads",
+    blog: "Blog",
+  },
 
   // BLOG
   blog: {

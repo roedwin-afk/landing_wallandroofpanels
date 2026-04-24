@@ -191,4 +191,12 @@ export const es: TranslationKeys = {
     },
     submit: "Enviar mensaje",
   },
+  menu: {
+    products: "Productos",
+    applications: "Aplicaciones",
+    specs: "Especificaciones",
+    contact: "Contacto",
+    downloads: "Descargas",
+    blog: "Blog",
+  },
 };

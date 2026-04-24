@@ -2,18 +2,34 @@
 import type { TranslationKeys } from "../i18n/en";
 import Menu from "./Menu.astro";
 
+import { Image } from "astro:assets";
+import logo from "../assets/logo.svg";
+
 interface Props {
   t: TranslationKeys;
   lang: "en" | "es";
 }
 
 const { t, lang } = Astro.props;
+const base = import.meta.env.BASE_URL+(lang === 'en' ? '' : `${lang}/`);
 ---
 
 <footer class="footer">
   <div class="footer__inner">
-    <a href="#top" class="footer__brand" aria-label={t.footer.brand}>
+    <!-- <a href="#top" class="footer__brand" aria-label={t.footer.brand}>
       Wall<span>&</span>Roof<span>Panels</span>.com
+    </a> -->
+    <a href={`${base}`} class="footer__brand" aria-label="Ir al inicio">
+      <Image
+        src={logo}
+        alt="Panel sándwich para techo industrial"
+        width={200}
+        height={50}
+        class="footer__logo-img"
+        format="webp"
+        quality={85}
+        loading="eager"
+      />
     </a>
 
     <Menu t={t} lang={lang} variant="footer" />
@@ -25,7 +41,7 @@ const { t, lang } = Astro.props;
 <style>
   .footer {
     background: #0c1a14;
-    padding: 1.5rem var(--container-padding, 1.25rem);
+    padding: 1rem var(--container-padding, 1.25rem);
     border-top: 1px solid rgba(255, 255, 255, 0.06);
   }
 
@@ -48,13 +64,16 @@ const { t, lang } = Astro.props;
     white-space: nowrap;
   }
 
-  .footer__brand span {
-    color: var(--green-light);
+  .footer__logo-img {
+    display: block;
+    height: 2.5rem;
+    width: auto;
+    filter: brightness(0) invert(1);
   }
 
   .footer__copy {
     margin: 0;
-    font-size: 0.72rem;
+    font-size: 0.875rem;
     line-height: 1.4;
     color: rgba(255, 255, 255, 0.32);
     text-align: right;

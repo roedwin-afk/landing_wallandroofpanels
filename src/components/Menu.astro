@@ -13,24 +13,20 @@ const contactHref = lang === "es" ? "/es/contact/" : "/contact/";
 
 const links = [
   {
-    label: t.footer.products,
-    href: "#products",
+    label: t.menu.products,
+    href: "/products",
   },
   {
-    label: t.footer.applications,
-    href: "#applications",
-  },
-  {
-    label: t.footer.specs,
-    href: "#specs",
-  },
-  {
-    label: t.footer.downloads,
+    label: t.menu.downloads,
     href: "/files/technical-sheet.pdf",
     download: true,
   },
   {
-    label: t.footer.contact,
+    label: t.menu.blog,
+    href: "/blog",
+  },
+  {
+    label: t.menu.contact,
     href: contactHref,
   },
 ];
@@ -59,7 +55,7 @@ const links = [
   }
 
   .menu__link {
-    font-size: 0.85rem;
+    font-size: 1rem;
     line-height: 1.4;
     font-weight: 600;
     transition: color 0.2s ease;

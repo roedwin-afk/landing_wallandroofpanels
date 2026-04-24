@@ -1,8 +1,12 @@
 ---
 import type { TranslationKeys } from '../i18n/en';
+import { Image } from "astro:assets";
 import type { Lang } from '../i18n/utils';
 import { getAlternatePath } from '../i18n/utils';
 import Menu from "./Menu.astro";
+
+import logo from "../assets/logo.svg";
+
 
 interface Props {
   t: TranslationKeys;
@@ -12,11 +16,23 @@ interface Props {
 const { t, lang } = Astro.props;
 const alternateLang = lang === 'en' ? 'es' : 'en';
 const alternatePath = getAlternatePath(Astro.url);
+const base = import.meta.env.BASE_URL+(lang === 'en' ? '' : `${lang}/`);
 ---
 
 <header class="nav">
   <div class="nav-logo">
-    Wall<span class="nav-logo-accent">&amp;</span>Roof<span class="nav-logo-accent">Panels</span>.com
+    <a href={`${base}`} class="menu__link" class="navbar__brand" aria-label="Ir al inicio">
+      <Image
+        src={logo}
+        alt="Panel sándwich para techo industrial"
+        width={200}
+        height={50}
+        class="nav__logo-img"
+        format="webp"
+        quality={85}
+        loading="eager"
+      />
+    </a>
   </div>
 
   <Menu t={t} lang={lang} variant="nav" />
@@ -27,7 +43,7 @@ const alternatePath = getAlternatePath(Astro.url);
       {alternateLang.toUpperCase()}
     </a>
 
-    <a href={lang === 'es' ? '/es/#contact' : '/#contact'} class="nav-cta">
+    <a href={lang === 'es' ? '/es/contact' : '/contact'} class="nav-cta">
       {t.nav.cta}
     </a>
 
@@ -71,6 +87,12 @@ const alternatePath = getAlternatePath(Astro.url);
     color: #fff;
     letter-spacing: 0.5px;
     white-space: nowrap;
+  }
+  .nav__logo-img {
+    display: block;
+    height: 2.5rem;
+    width: auto;
+    filter: brightness(0) invert(1);
   }
 
   .nav-logo-accent { color: #3B6D11; }
