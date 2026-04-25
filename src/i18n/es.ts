@@ -167,13 +167,6 @@ export const es: TranslationKeys = {
     privacy: "Política de privacidad",
     copy: "© 2026 WallAndRoofPanels.com. Todos los derechos reservados.",
   },
-
-  blog: {
-    eyebrow: 'Recursos',
-    title: 'Artículos técnicos y actualizaciones de proyectos',
-    read_more: 'Leer artículo',
-    back: '← Volver a artículos',
-  },
   form_contact: {
     eyebrow: "Contacto",
     title: "Hablemos de tu proyecto",
@@ -199,4 +192,14 @@ export const es: TranslationKeys = {
     downloads: "Descargas",
     blog: "Blog",
   },
+  blog: {
+        tagline: 'Recursos Técnicos',
+        title_line1: 'Conocimiento',
+        title_line2: 'Constructivo',
+        description:
+            'Guías prácticas sobre instalación de paneles, rendimiento estructural, aislamiento acústico, resistencia a la intemperie y cargas en pisos — para arquitectos, ingenieros y constructores.',
+        btncta: 'Leer artículo',
+        btn_next: 'Siguiente',
+        btn_prev: 'Anterior',
+    },
 };

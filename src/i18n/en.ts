@@ -182,14 +182,6 @@ export const en = {
     downloads: "Downloads",
     blog: "Blog",
   },
-
-  // BLOG
-  blog: {
-    eyebrow: 'Resources',
-    title: 'Technical articles & project updates',
-    read_more: 'Read article',
-    back: '← Back to articles',
-  },
   form_contact: {
     eyebrow: "Contact us",
     title: "Let’s talk about your project",
@@ -207,6 +199,16 @@ export const en = {
     },
     submit: "Send message",
   },
+  blog: {
+        tagline: 'Technical Resources',
+        title_line1: 'Building',
+        title_line2: 'Insights',
+        description:
+            'Practical knowledge on panel installation, structural performance, acoustic insulation, and weatherproofing — for architects, civil engineers, and industrial building owners.',
+        btncta: 'Read article',
+        btn_next: 'Next',
+        btn_prev: 'Previous',
+    },
 } as const;
 
 // Convierte todos los string literals a string genérico

@@ -1,0 +1,374 @@
+---
+interface Props {
+  posts: any[];
+  currentPage: number;
+  totalPages: number;
+  basePath: string;
+  t: any;
+  locale: string;
+}
+
+//const { posts, currentPage, totalPages, basePath } = Astro.props;
+//const paginationLinks = Array.from({ length: totalPages }, (_, i) => i + 1);
+//const locale = Astro.currentLocale ?? "en";
+//const dateLocale = locale === "es" ? "es-US" : "en-US";
+
+const { posts, currentPage, totalPages, basePath, t, locale } = Astro.props;
+
+const paginationLinks = Array.from({ length: totalPages }, (_, i) => i + 1);
+
+const dateLocale = locale === "es" ? "es-US" : "en-US";
+
+const blogBase = locale === "es" ? "/es/blog/" : "/blog/";
+const pageBase = basePath;
+---
+
+<section class="blog">
+    <div class="blog__container">
+
+        <div class="blog__header">
+            <p class="blog__eyebrow">{t.blog.tagline}</p>
+            <h1 class="blog__title">
+                {t.blog.title_line1} <em>{t.blog.title_line2}</em>
+            </h1>
+            <p class="blog__desc">{t.blog.description}</p>
+        </div>
+
+        <div class="blog__grid">
+            {posts.map((post: any, index: number) => {
+                const isFeatured = index === 0;
+                const imgUrl = post._embedded?.["wp:featuredmedia"]?.[0]?.source_url;
+                return (
+                    <article class={`blog-card ${isFeatured ? "blog-card--featured" : ""}`}>
+                        <a href={`${blogBase}${post.slug}/`} class="blog-card__link">
+
+                            <div class="blog-card__thumb">
+                                {imgUrl ? (
+                                    <img src={imgUrl} alt={post.title.rendered} class="blog-card__img" loading="lazy" />
+                                ) : (
+                                    <div class="blog-card__thumb-placeholder">
+                                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                            <rect x="3" y="3" width="18" height="18" rx="2"/>
+                                            <circle cx="8.5" cy="8.5" r="1.5"/>
+                                            <path d="M21 15l-5-5L5 21"/>
+                                        </svg>
+                                        <span>No image</span>
+                                    </div>
+                                )}
+                                <div class="blog-card__thumb-overlay"></div>
+                            </div>
+
+                            <div class="blog-card__body">
+                                <time class="blog-card__date">
+                                    {new Date(post.date).toLocaleDateString(dateLocale, {
+                                        year: "numeric",
+                                        month: "long",
+                                        day: "numeric",
+                                    })}
+                                </time>
+                                <h2 class="blog-card__title" set:html={post.title.rendered} />
+                                <div class="blog-card__excerpt" set:html={post.excerpt.rendered} />
+                                <span class="blog-card__cta">{t.blog.btncta} →</span>
+                            </div>
+
+                        </a>
+                    </article>
+                );
+            })}
+        </div>
+
+        {totalPages > 1 && (
+            <nav class="pagination" aria-label="Blog pagination">
+                {currentPage > 1 && (
+                    <a
+                        href={currentPage === 2 ? blogBase : `${pageBase}${currentPage - 1}/`}
+                        class="pagination__btn"
+                    >
+                        ← {t.blog.btn_prev}
+                    </a>
+                )}
+                <div class="pagination__pages">
+                    {paginationLinks.map((pageNum) => (
+                        <a
+                            href={pageNum === 1 ? blogBase : `${pageBase}${pageNum}/`}
+                            class={`pagination__page ${pageNum === currentPage ? "active" : ""}`}
+                            aria-current={pageNum === currentPage ? "page" : undefined}
+                        >
+                            {pageNum}
+                        </a>
+                    ))}
+                </div>
+                {currentPage < totalPages && (
+                    <a href={`${pageBase}${currentPage + 1}/`} class="pagination__btn">
+                        {t.blog.btn_next} →
+                    </a>
+                )}
+            </nav>
+        )}
+
+    </div>
+</section>
+
+<style>
+  .blog {
+    background: var(--green-dark);
+    padding: 6rem 2rem 4rem;
+    font-family: var(--font-body);
+    min-height: 100vh;
+  }
+
+  .blog__container {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .blog__header {
+    margin-bottom: 3rem;
+    max-width: 620px;
+  }
+
+  .blog__eyebrow {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--green-light);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin: 0 0 10px;
+  }
+
+  .blog__title {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 0.9;
+    margin: 0 0 1.25rem;
+    text-transform: uppercase;
+  }
+
+  .blog__title em {
+    color: var(--green-light);
+    font-style: italic;
+  }
+
+  .blog__desc {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .blog__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 3rem;
+  }
+
+  .blog-card {
+    background: var(--green-mid);
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
+    overflow: hidden;
+    min-height: 100%;
+    transition:
+      transform 0.25s ease,
+      border-color 0.25s ease,
+      background 0.25s ease;
+  }
+
+  .blog-card:hover {
+    transform: translateY(-4px);
+    background: color-mix(in srgb, var(--green-mid) 82%, var(--green-light));
+    border-color: color-mix(in srgb, var(--green-light) 40%, transparent);
+  }
+
+  .blog-card--featured {
+    grid-column: span 2;
+  }
+
+  .blog-card__link {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .blog-card__thumb {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: var(--green-deep);
+    overflow: hidden;
+  }
+
+  .blog-card--featured .blog-card__thumb {
+    aspect-ratio: 16 / 7;
+  }
+
+  .blog-card__img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .blog-card:hover .blog-card__img {
+    transform: scale(1.04);
+  }
+
+  .blog-card__thumb-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--green-mid), var(--green-deep));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: var(--text-dim);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .blog-card__thumb-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(12, 26, 20, 0) 45%,
+      rgba(12, 26, 20, 0.45) 100%
+    );
+    pointer-events: none;
+  }
+
+  .blog-card__body {
+    padding: 1.35rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    flex: 1;
+  }
+
+  .blog-card__date {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--green-light);
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+  }
+
+  .blog-card__title {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.05;
+    margin: 0;
+    text-transform: uppercase;
+  }
+
+  .blog-card--featured .blog-card__title {
+    font-size: 1.65rem;
+  }
+
+  .blog-card__excerpt {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .blog-card__excerpt :global(p) {
+    margin: 0;
+  }
+
+  .blog-card__cta {
+    margin-top: auto;
+    padding-top: 0.8rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--green-light);
+  }
+
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding-top: 2rem;
+  }
+
+  .pagination__btn,
+  .pagination__page {
+    text-decoration: none;
+    font-weight: 700;
+  }
+
+  .pagination__btn {
+    padding: 0.7rem 1.1rem;
+    color: var(--white);
+    background: var(--green-primary);
+    border-radius: 8px;
+  }
+
+  .pagination__pages {
+    display: flex;
+    gap: 0.45rem;
+  }
+
+  .pagination__page {
+    width: 38px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    color: var(--text-dim);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+  }
+
+  .pagination__page.active,
+  .pagination__page:hover,
+  .pagination__btn:hover {
+    background: var(--green-light);
+    color: var(--green-dark);
+    border-color: var(--green-light);
+  }
+
+  @media (max-width: 900px) {
+    .blog__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .blog-card--featured {
+      grid-column: span 2;
+    }
+  }
+
+  @media (max-width: 580px) {
+    .blog {
+      padding: 4rem 1.25rem 3rem;
+    }
+
+    .blog__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .blog-card--featured {
+      grid-column: span 1;
+    }
+
+    .blog-card--featured .blog-card__thumb {
+      aspect-ratio: 16 / 9;
+    }
+  }
+</style>
