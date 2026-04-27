@@ -16,26 +16,28 @@ const contactHref = lang === "es" ? `${base}es/contact/` : `${base}contact/`;
 const links = [
   {
     label: t.menu.products,
-    href: `${lang==="en" ? base : base+"es/"}products`,
+    href: lang === "en" ? `${base}products/` : `${base}es/products/`,
   },
   {
     label: t.menu.downloads,
-    href: `${lang==="en" ? base  : base+"es/"}files/Technical Data Sheet.pdf`,
+    href: lang === "en"
+      ? `${base}files/Technical Data Sheet.pdf`
+      : `${base}es/files/Technical Data Sheet.pdf`,
     download: true,
   },
   {
     label: t.menu.blog,
-    href: `${lang==="en" ? base : base+"es/" }blog`,
+    href: lang === "en" ? `${base}blog/` : `${base}es/blog/`,
   },
   {
     label: t.menu.contact,
-    href: `${contactHref}`,
+    href: lang === "en" ? `${base}contact/` : `${base}es/contact/`,
   },
 ];
 ---
 
 <nav class:list={["menu", `menu--${variant}`]} aria-label="Main navigation">
-  <p style="color: red;">{base} - {lang}</p>
+  <!-- <p style="color: red;">{base} - {lang}</p> -->
   {
     links.map((link) => (
       <a

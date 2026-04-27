@@ -18,7 +18,13 @@ const base = import.meta.env.BASE_URL;
 const homeHref = lang === "es" ? `${base}es/` : base;
 const contactHref = lang === "es" ? `${base}es/contact/` : `${base}contact/`;
 
-const alternatePath = lang === "es" ? base : `${base}es/`;
+// Alternate path inteligente basado en la URL actual
+const currentPath = Astro.url.pathname;
+const pathWithoutBase = currentPath.replace(base, '') || '';
+const cleanPath = pathWithoutBase.replace(/^es\//, '');
+const alternatePath = lang === "es"
+  ? `${base}${cleanPath}`
+  : `${base}es/${cleanPath}`;
 ---
 
 <header class="nav">
@@ -40,7 +46,6 @@ const alternatePath = lang === "es" ? base : `${base}es/`;
   <Menu t={t} lang={lang} variant="nav" />
 
   <div class="nav-right">
-    <!-- Language switcher -->
     <a href={alternatePath} class="lang-switch" aria-label="Switch language">
       {alternateLang.toUpperCase()}
     </a>
@@ -49,7 +54,6 @@ const alternatePath = lang === "es" ? base : `${base}es/`;
       {t.nav.cta}
     </a>
 
-    <!-- Mobile hamburger -->
     <button
       class="hamburger"
       id="hamburger"
@@ -63,7 +67,6 @@ const alternatePath = lang === "es" ? base : `${base}es/`;
   </div>
 </header>
 
-<!-- Mobile menu -->
 <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
   <a href={`${homeHref}#products`}>{t.nav.products}</a>
   <a href={`${homeHref}#applications`}>{t.nav.applications}</a>
@@ -74,7 +77,6 @@ const alternatePath = lang === "es" ? base : `${base}es/`;
   </a>
   <a href={contactHref} class="mobile-cta">{t.nav.cta}</a>
 </div>
-
 <style>
   .nav {
     background: #0c1a14;
