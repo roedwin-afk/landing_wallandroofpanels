@@ -16,20 +16,20 @@ const contactHref = lang === "es" ? `${base}es/contact/` : `${base}contact/`;
 const links = [
   {
     label: t.menu.products,
-    href: `${base==="en" ? "" : "es/"}products`,
+    href: `${lang==="en" ? base : base+"es/"}products`,
   },
   {
     label: t.menu.downloads,
-    href: `${base==="en" ? "" : "es/"}files/Technical Data Sheet.pdf`,
+    href: `${lang==="en" ? base  : base+"es/"}files/Technical Data Sheet.pdf`,
     download: true,
   },
   {
     label: t.menu.blog,
-    href: `${base==="en" ? "" : "es/"}blog`,
+    href: `${lang==="en" ? base : base+"es/" }blog`,
   },
   {
     label: t.menu.contact,
-    href: `${base}${contactHref}`,
+    href: `${contactHref}`,
   },
 ];
 ---
