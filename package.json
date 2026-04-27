@@ -9,10 +9,14 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "build:prod": "cross-env SITE=https://landing.mequipo.com BASE=/landings/wallandroofpanels/ astro build"
   },
   "dependencies": {
     "astro": "^6.1.9",
     "lucide-astro": "^0.556.0"
+  },
+  "devDependencies": {
+    "cross-env": "^10.1.0"
   }
 }

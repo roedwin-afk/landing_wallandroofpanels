@@ -5,6 +5,8 @@ import Footer from '../../components/Footer.astro';
 import { useTranslations } from '../../i18n/utils';
 
 const t = useTranslations('es');
+
+const base = import.meta.env.BASE_URL;
 ---
 
 <Layout
@@ -17,7 +19,7 @@ const t = useTranslations('es');
     <h1 class="notfound__code">404</h1>
     <p class="notfound__title">Page Not Found</p>
     <p class="notfound__desc">The page you are looking for does not exist or has been moved.</p>
-    <a href="/" class="notfound__btn">← Back to Home</a>
+    <a href={base} class="notfound__btn">← Back to Home</a>
   </div>
 
   <Footer {t} lang="es" />

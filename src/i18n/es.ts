@@ -53,7 +53,7 @@ export const es: TranslationKeys = {
 
   features: {
     eyebrow: 'Ventajas clave',
-    title: 'Por qué los ingenieros especifican nuestros paneles',
+    title: '¿Por qué los ingenieros especifican nuestros paneles?',
     f1_title: 'Instalación rápida',
     f1_desc: 'Sistema de unión machihembrado con cierre a presión. Una cubierta de 500m² promedio se cierra en menos de 3 días con un equipo de 4 personas.',
     f2_title: 'Resistencia climática',

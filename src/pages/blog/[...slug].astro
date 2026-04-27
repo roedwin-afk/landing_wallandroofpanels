@@ -36,7 +36,7 @@ const { post } = Astro.props as { post: any };
   title={`${post.title.rendered} | Panel For Cold Room`}
   description={post.excerpt.rendered.replace(/<[^>]*>/g, "").trim()}
 >
-  <Nav t={t} lang={lang} />
+  <Nav t={t} lang={lang} disableLangSwitch={true} />
 
   <main class="post">
     <article class="post__container">

@@ -56,7 +56,7 @@ export const en = {
   // FEATURES
   features: {
     eyebrow: 'Key advantages',
-    title: 'Why engineers specify our panels',
+    title: 'Why engineers specify our panels?',
     f1_title: 'Fast installation',
     f1_desc: 'Click-lock tongue-and-groove joint system. An average 500m² roof can be enclosed in under 3 days with a 4-person crew.',
     f2_title: 'Weather resistance',
