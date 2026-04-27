@@ -1,12 +1,10 @@
 ---
-import type { TranslationKeys } from '../i18n/en';
+import type { TranslationKeys } from "../i18n/en";
 import { Image } from "astro:assets";
-import type { Lang } from '../i18n/utils';
-import { getAlternatePath } from '../i18n/utils';
+import type { Lang } from "../i18n/utils";
 import Menu from "./Menu.astro";
 
 import logo from "../assets/logo.svg";
-
 
 interface Props {
   t: TranslationKeys;
@@ -14,14 +12,18 @@ interface Props {
 }
 
 const { t, lang } = Astro.props;
-const alternateLang = lang === 'en' ? 'es' : 'en';
-const alternatePath = getAlternatePath(Astro.url);
-const base = import.meta.env.BASE_URL+(lang === 'en' ? '' : `${lang}/`);
+const alternateLang = lang === "en" ? "es" : "en";
+
+const base = import.meta.env.BASE_URL;
+const homeHref = lang === "es" ? `${base}es/` : base;
+const contactHref = lang === "es" ? `${base}es/contact/` : `${base}contact/`;
+
+const alternatePath = lang === "es" ? base : `${base}es/`;
 ---
 
 <header class="nav">
   <div class="nav-logo">
-    <a href={`${base}`} class="menu__link" class="navbar__brand" aria-label="Ir al inicio">
+    <a href={homeHref} class="navbar__brand" aria-label="Go to home">
       <Image
         src={logo}
         alt="Panel sándwich para techo industrial"
@@ -43,12 +45,17 @@ const base = import.meta.env.BASE_URL+(lang === 'en' ? '' : `${lang}/`);
       {alternateLang.toUpperCase()}
     </a>
 
-    <a href={lang === 'es' ? '/es/contact' : '/contact'} class="nav-cta">
+    <a href={contactHref} class="nav-cta">
       {t.nav.cta}
     </a>
 
     <!-- Mobile hamburger -->
-    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+    <button
+      class="hamburger"
+      id="hamburger"
+      aria-label="Open menu"
+      aria-expanded="false"
+    >
       <span></span>
       <span></span>
       <span></span>
@@ -58,18 +65,19 @@ const base = import.meta.env.BASE_URL+(lang === 'en' ? '' : `${lang}/`);
 
 <!-- Mobile menu -->
 <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
-  <a href={lang === 'es' ? '/es/#products' : '/#products'}>{t.nav.products}</a>
-  <a href={lang === 'es' ? '/es/#applications' : '/#applications'}>{t.nav.applications}</a>
-  <a href={lang === 'es' ? '/es/#specs' : '/#specs'}>{t.nav.specs}</a>
-  <a href={lang === 'es' ? '/es/#projects' : '/#projects'}>{t.nav.projects}</a>
-  <a href={lang === 'es' ? '/es/#contact' : '/#contact'}>{t.nav.contact}</a>
-  <a href={alternatePath} class="mobile-lang">{alternateLang.toUpperCase()} — Switch language</a>
-  <a href={lang === 'es' ? '/es/#contact' : '/#contact'} class="mobile-cta">{t.nav.cta}</a>
+  <a href={`${homeHref}#products`}>{t.nav.products}</a>
+  <a href={`${homeHref}#applications`}>{t.nav.applications}</a>
+  <a href={`${homeHref}#specs`}>{t.nav.specs}</a>
+  <a href={contactHref}>{t.nav.contact}</a>
+  <a href={alternatePath} class="mobile-lang">
+    {alternateLang.toUpperCase()} — Switch language
+  </a>
+  <a href={contactHref} class="mobile-cta">{t.nav.cta}</a>
 </div>
 
 <style>
   .nav {
-    background: #0C1A14;
+    background: #0c1a14;
     padding: 0 2rem;
     display: flex;
     align-items: center;
@@ -95,7 +103,9 @@ const base = import.meta.env.BASE_URL+(lang === 'en' ? '' : `${lang}/`);
     filter: brightness(0) invert(1);
   }
 
-  .nav-logo-accent { color: #3B6D11; }
+  .nav-logo-accent {
+    color: #3b6d11;
+  }
 
   .nav-links {
     display: flex;
@@ -104,12 +114,14 @@ const base = import.meta.env.BASE_URL+(lang === 'en' ? '' : `${lang}/`);
 
   .nav-links a {
     font-size: 13px;
-    color: rgba(255,255,255,0.7);
+    color: rgba(255, 255, 255, 0.7);
     font-weight: 500;
     transition: color 0.2s;
   }
 
-  .nav-links a:hover { color: #97C459; }
+  .nav-links a:hover {
+    color: #97c459;
+  }
 
   .nav-right {
     display: flex;
@@ -120,21 +132,21 @@ const base = import.meta.env.BASE_URL+(lang === 'en' ? '' : `${lang}/`);
   .lang-switch {
     font-size: 12px;
     font-weight: 600;
-    color: rgba(255,255,255,0.5);
+    color: rgba(255, 255, 255, 0.5);
     letter-spacing: 1px;
-    border: 1px solid rgba(255,255,255,0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     padding: 4px 10px;
     border-radius: 3px;
     transition: all 0.2s;
   }
 
   .lang-switch:hover {
-    color: #97C459;
-    border-color: #97C459;
+    color: #97c459;
+    border-color: #97c459;
   }
 
   .nav-cta {
-    background: #3B6D11;
+    background: #3b6d11;
     color: #fff;
     padding: 8px 18px;
     font-size: 13px;
@@ -143,7 +155,9 @@ const base = import.meta.env.BASE_URL+(lang === 'en' ? '' : `${lang}/`);
     transition: background 0.2s;
   }
 
-  .nav-cta:hover { background: #4a8a15; }
+  .nav-cta:hover {
+    background: #4a8a15;
+  }
 
   /* Hamburger */
   .hamburger {
@@ -164,43 +178,53 @@ const base = import.meta.env.BASE_URL+(lang === 'en' ? '' : `${lang}/`);
     transition: all 0.3s;
   }
 
-  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-  .hamburger.open span:nth-child(2) { opacity: 0; }
-  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .hamburger.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .hamburger.open span:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
 
   /* Mobile menu */
   .mobile-menu {
     display: none;
     flex-direction: column;
-    background: #0C1A14;
+    background: #0c1a14;
     padding: 1rem 2rem 1.5rem;
-    border-top: 1px solid rgba(255,255,255,0.08);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
     position: sticky;
     top: 60px;
     z-index: 99;
   }
 
-  .mobile-menu.open { display: flex; }
+  .mobile-menu.open {
+    display: flex;
+  }
 
   .mobile-menu a {
-    color: rgba(255,255,255,0.7);
+    color: rgba(255, 255, 255, 0.7);
     font-size: 15px;
     font-weight: 500;
     padding: 10px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     transition: color 0.2s;
   }
 
-  .mobile-menu a:hover { color: #97C459; }
+  .mobile-menu a:hover {
+    color: #97c459;
+  }
 
   .mobile-lang {
-    color: rgba(255,255,255,0.4) !important;
+    color: rgba(255, 255, 255, 0.4) !important;
     font-size: 13px !important;
   }
 
   .mobile-cta {
     margin-top: 1rem;
-    background: #3B6D11;
+    background: #3b6d11;
     color: #fff !important;
     padding: 12px 0 !important;
     text-align: center;
@@ -210,31 +234,39 @@ const base = import.meta.env.BASE_URL+(lang === 'en' ? '' : `${lang}/`);
   }
 
   @media (max-width: 768px) {
-    .nav-links { display: none; }
-    .lang-switch { display: none; }
-    .nav-cta { display: none; }
-    .hamburger { display: flex; }
+    .nav-links {
+      display: none;
+    }
+    .lang-switch {
+      display: none;
+    }
+    .nav-cta {
+      display: none;
+    }
+    .hamburger {
+      display: flex;
+    }
   }
 </style>
 
 <script>
-  const hamburger = document.getElementById('hamburger');
-  const mobileMenu = document.getElementById('mobile-menu');
+  const hamburger = document.getElementById("hamburger");
+  const mobileMenu = document.getElementById("mobile-menu");
 
-  hamburger?.addEventListener('click', () => {
-    const isOpen = mobileMenu?.classList.toggle('open');
-    hamburger.classList.toggle('open');
-    hamburger.setAttribute('aria-expanded', String(isOpen));
-    mobileMenu?.setAttribute('aria-hidden', String(!isOpen));
+  hamburger?.addEventListener("click", () => {
+    const isOpen = mobileMenu?.classList.toggle("open");
+    hamburger.classList.toggle("open");
+    hamburger.setAttribute("aria-expanded", String(isOpen));
+    mobileMenu?.setAttribute("aria-hidden", String(!isOpen));
   });
 
   // Cierra el menu al hacer click en cualquier link
-  mobileMenu?.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenu.classList.remove('open');
-      hamburger?.classList.remove('open');
-      hamburger?.setAttribute('aria-expanded', 'false');
-      mobileMenu.setAttribute('aria-hidden', 'true');
+  mobileMenu?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      mobileMenu.classList.remove("open");
+      hamburger?.classList.remove("open");
+      hamburger?.setAttribute("aria-expanded", "false");
+      mobileMenu.setAttribute("aria-hidden", "true");
     });
   });
 </script>
