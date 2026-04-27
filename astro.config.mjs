@@ -1,7 +1,7 @@
-// astro.config.mjs
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
 
 export default defineConfig({
-  output: 'static',
-  site: 'https://wallandroofpanels.com',
+  site: "https://roedwin-afk.github.io",
+  base: "/landing_wallandroofpanels/",
+  output: "static",
 });

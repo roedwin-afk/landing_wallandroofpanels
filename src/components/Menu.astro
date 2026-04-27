@@ -7,27 +7,29 @@ interface Props {
   variant?: "nav" | "footer";
 }
 
+const base = import.meta.env.BASE_URL;
+
 const { t, lang = "en", variant = "nav" } = Astro.props;
 
-const contactHref = lang === "es" ? "/es/contact/" : "/contact/";
+const contactHref = lang === "es" ? "es/contact/" : "contact/";
 
 const links = [
   {
     label: t.menu.products,
-    href: "/products",
+    href: `${base}products`,
   },
   {
     label: t.menu.downloads,
-    href: "/files/Technical Data Sheet.pdf",
+    href: `${base}files/Technical Data Sheet.pdf`,
     download: true,
   },
   {
     label: t.menu.blog,
-    href: "/blog",
+    href: `${base}blog`,
   },
   {
     label: t.menu.contact,
-    href: contactHref,
+    href: `${base}${contactHref}`,
   },
 ];
 ---

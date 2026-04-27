@@ -1,5 +1,6 @@
 ---
 import type { TranslationKeys } from "../i18n/en";
+const base = import.meta.env.BASE_URL;
 
 interface Props {
   t: TranslationKeys;
@@ -17,12 +18,12 @@ const { t } = Astro.props;
     </div>
 
     <div class="cta__actions">
-      <a href="/contact" class="cta__btn cta__btn--primary">
+      <a href={`${base}contact`} class="cta__btn cta__btn--primary">
         {t.cta.btn_primary}
       </a>
 
       <a
-        href="/files/Technical Data Sheet.pdf"
+        href={`${base}files/Technical Data Sheet.pdf`}
         class="cta__btn cta__btn--outline"
         download
         target="_blank"
