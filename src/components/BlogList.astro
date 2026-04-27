@@ -19,7 +19,9 @@ const paginationLinks = Array.from({ length: totalPages }, (_, i) => i + 1);
 
 const dateLocale = locale === "es" ? "es-US" : "en-US";
 
-const blogBase = locale === "es" ? "/es/blog/" : "/blog/";
+const base = import.meta.env.BASE_URL;
+
+const blogBase = locale === "es" ? `${base}es/blog/` : `${base}blog/`;
 const pageBase = basePath;
 ---
 

@@ -23,14 +23,16 @@ export async function getStaticPaths() {
   }));
 }
 
+const base = import.meta.env.BASE_URL;
+
 const { posts, currentPage, totalPages } = Astro.props;
 
 const locale = Astro.currentLocale ?? "en";
 const t = locale === "es" ? es : en;
 
 const lang = locale === "es" ? "es" : "en";
-const blogBase = locale === "es" ? "/es/blog/" : "/blog/";
-const basePath = locale === "es" ? "/es/blog/page/" : "/blog/page/";
+const blogBase = locale === "es" ? `${base}es/blog/` : `${base}blog/`;
+const basePath = locale === "es" ? `${base}es/blog/page/` : `${base}blog/page/`;
 ---
 
 <Layout
