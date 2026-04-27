@@ -1,0 +1,672 @@
+---
+import type { TranslationKeys } from "../i18n/en";
+
+interface Props {
+  t: TranslationKeys;
+  lang?: "en" | "es";
+}
+
+const { t, lang = "en" } = Astro.props;
+
+const base = import.meta.env.BASE_URL;
+const contactHref = lang === "es" ? `${base}es/contact/` : `${base}contact/`;
+const pdfHref = `${base}files/technical-sheet.pdf`;
+
+const products = [
+  {
+    id: "roof",
+    label: t.productPages.tabs.roof,
+    data: t.productPages.roofPanel,
+  },
+  {
+    id: "wall",
+    label: t.productPages.tabs.wall,
+    data: t.productPages.wallPanel,
+  },
+  {
+    id: "cold",
+    label: t.productPages.tabs.cold,
+    data: t.productPages.coldRoomPanel,
+  },
+];
+---
+
+<main class="product-page" data-products>
+  <div class="product-tabs">
+    {
+      products.map((item, index) => (
+        <button
+          class:list={["product-tab", { active: index === 0 }]}
+          type="button"
+          data-tab={item.id}
+          aria-selected={index === 0 ? "true" : "false"}
+        >
+          {item.label}
+        </button>
+      ))
+    }
+  </div>
+
+  {
+    products.map((item, index) => {
+      const product = item.data;
+
+      return (
+        <div data-product={item.id} hidden={index !== 0}>
+          <section class="product-hero">
+            <div class="product-hero__inner">
+              <div class="product-hero__content">
+                <p class="product-hero__eyebrow">{product.eyebrow}</p>
+
+                <h1 class="product-hero__title">{product.title}</h1>
+
+                <p class="product-hero__desc">{product.description}</p>
+
+                <div class="product-hero__actions">
+                  <a href={contactHref} class="product-btn product-btn--primary">
+                    {product.primaryCta}
+                  </a>
+
+                  <a
+                    href={pdfHref}
+                    class="product-btn product-btn--outline"
+                    download
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    {product.secondaryCta}
+                  </a>
+                </div>
+
+                <div class="product-hero__badges">
+                  {product.badges.map((badge) => (
+                    <span>{badge}</span>
+                  ))}
+                </div>
+              </div>
+
+              <div class="product-hero__visual" aria-hidden="true">
+                <div class="panel-card">
+                  <div class="panel-layer panel-layer--finish">
+                    Exterior finish
+                  </div>
+                  <div class="panel-layer panel-layer--steel">
+                    Steel sheet
+                  </div>
+                  <div class="panel-layer panel-layer--core">
+                    Polyurethane foam core
+                  </div>
+                  <div class="panel-layer panel-layer--steel">
+                    Steel sheet
+                  </div>
+                  <div class="panel-layer panel-layer--inside">
+                    Interior finish
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="product-stats">
+            {product.stats.map((stat) => (
+              <article class="product-stat">
+                <strong>{stat.value}</strong>
+                <span>{stat.label}</span>
+              </article>
+            ))}
+          </section>
+
+          <section class="product-section">
+            <div class="product-section__header">
+              <p class="product-section__eyebrow">
+                {product.overview.eyebrow}
+              </p>
+              <h2>{product.overview.title}</h2>
+              <p>{product.overview.description}</p>
+            </div>
+
+            <div class="feature-grid">
+              {product.features.map((feature) => (
+                <article class="feature-card">
+                  <h3>{feature.title}</h3>
+                  <p>{feature.description}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section class="applications-section">
+            <div class="applications-section__inner">
+              <div class="product-section__header product-section__header--dark">
+                <p class="product-section__eyebrow">
+                  {product.applications.eyebrow}
+                </p>
+                <h2>{product.applications.title}</h2>
+              </div>
+
+              <div class="applications-grid">
+                {product.applications.items.map((app) => (
+                  <article class="application-card">{app}</article>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section class="specs-section">
+            <div class="product-section__header">
+              <p class="product-section__eyebrow">{product.specs.eyebrow}</p>
+              <h2>{product.specs.title}</h2>
+            </div>
+
+            <div class="specs-grid">
+              {product.specs.items.map((spec) => (
+                <article class="spec-box">
+                  <span>{spec.label}</span>
+                  <strong>{spec.value}</strong>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section class="product-cta">
+            <div class="product-cta__inner">
+              <h2>{product.cta.title}</h2>
+              <p>{product.cta.description}</p>
+              <a href={contactHref}>{product.cta.button}</a>
+            </div>
+          </section>
+        </div>
+      );
+    })
+  }
+</main>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    const root = document.querySelector("[data-products]");
+    if (!root) return;
+
+    const tabs = Array.from(root.querySelectorAll("[data-tab]"));
+    const sections = Array.from(root.querySelectorAll("[data-product]"));
+
+    const activateProduct = (target) => {
+      tabs.forEach((tab) => {
+        const isActive = tab.dataset.tab === target;
+        tab.classList.toggle("active", isActive);
+        tab.setAttribute("aria-selected", isActive ? "true" : "false");
+      });
+
+      sections.forEach((section) => {
+        section.hidden = section.dataset.product !== target;
+      });
+    };
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const target = tab.dataset.tab;
+        if (target) activateProduct(target);
+      });
+    });
+  });
+</script>
+<style>
+    .product-page {
+        background: #f4f4f2;
+    }
+
+    .product-hero {
+        background:
+            radial-gradient(
+                circle at top right,
+                rgba(151, 196, 89, 0.14),
+                transparent 28%
+            ),
+            linear-gradient(
+                135deg,
+                var(--green-dark) 0%,
+                var(--green-mid) 58%,
+                #1d4a27 100%
+            );
+        overflow: hidden;
+    }
+
+    .product-hero__inner {
+        width: min(1200px, calc(100% - 2rem));
+        margin: 0 auto;
+        min-height: 34rem;
+        display: grid;
+        grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr);
+        gap: 2rem;
+        align-items: center;
+        padding: 5rem 0;
+    }
+
+    .product-hero__content {
+        max-width: 42rem;
+    }
+
+    .product-hero__eyebrow,
+    .product-section__eyebrow {
+        margin: 0 0 0.75rem;
+        font-size: 0.72rem;
+        line-height: 1;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: var(--green-light);
+    }
+
+    .product-hero__title {
+        margin: 0;
+        font-family: var(--font-display);
+        font-size: clamp(3rem, 7vw, 5rem);
+        line-height: 0.95;
+        text-transform: uppercase;
+        color: var(--white);
+    }
+
+    .product-hero__desc {
+        margin: 1.4rem 0 0;
+        max-width: 38rem;
+        font-size: 1rem;
+        line-height: 1.75;
+        color: var(--text-muted);
+    }
+
+    .product-hero__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.85rem;
+        margin-top: 2rem;
+    }
+
+    .product-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 3rem;
+        padding: 0.9rem 1.4rem;
+        border-radius: 0.35rem;
+        font-size: 0.95rem;
+        font-weight: 700;
+        transition:
+            background-color 0.2s ease,
+            border-color 0.2s ease,
+            transform 0.2s ease;
+    }
+
+    .product-btn:hover {
+        transform: translateY(-1px);
+    }
+
+    .product-btn--primary {
+        background: var(--green-primary);
+        border: 1px solid var(--green-primary);
+        color: var(--white);
+    }
+
+    .product-btn--primary:hover {
+        background: var(--green-deep);
+        border-color: var(--green-deep);
+    }
+
+    .product-btn--outline {
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.32);
+        color: var(--white);
+    }
+
+    .product-btn--outline:hover {
+        border-color: rgba(255, 255, 255, 0.56);
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    .product-hero__badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 1.2rem;
+    }
+
+    .product-hero__badges span {
+        display: inline-flex;
+        align-items: center;
+        min-height: 1.8rem;
+        padding: 0.35rem 0.65rem;
+        border-radius: 999px;
+        background: rgba(151, 196, 89, 0.14);
+        border: 1px solid rgba(151, 196, 89, 0.18);
+        color: var(--green-light);
+        font-size: 0.74rem;
+        font-weight: 700;
+    }
+
+    .product-hero__visual {
+        display: flex;
+        justify-content: center;
+    }
+
+    .panel-card {
+        width: min(100%, 24rem);
+        padding: 1.4rem;
+        border-radius: 1rem;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.28);
+        transform: rotate(-4deg);
+    }
+
+    .panel-layer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 0.45rem;
+        border-radius: 0.35rem;
+        text-align: center;
+        font-size: 0.65rem;
+        line-height: 1;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-weight: 800;
+    }
+
+    .panel-layer:last-child {
+        margin-bottom: 0;
+    }
+
+    .panel-layer--finish {
+        min-height: 1.4rem;
+        background: #c0dd97;
+        color: #173404;
+    }
+
+    .panel-layer--steel {
+        min-height: 0.95rem;
+        background: #7f817b;
+        color: #ffffff;
+    }
+
+    .panel-layer--core {
+        min-height: 5.5rem;
+        background: #eaf3de;
+        color: var(--green-primary);
+        border: 1px solid #c0dd97;
+    }
+
+    .panel-layer--inside {
+        min-height: 1.4rem;
+        background: #5f5e5a;
+        color: #f1efe8;
+    }
+
+    .product-stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        background: #0c1a14;
+    }
+
+    .product-stat {
+        padding: 1.35rem 1.2rem;
+        text-align: center;
+        border-right: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .product-stat:last-child {
+        border-right: 0;
+    }
+
+    .product-stat strong {
+        display: block;
+        font-family: var(--font-display);
+        font-size: 2rem;
+        line-height: 1;
+        color: var(--green-light);
+    }
+
+    .product-stat span {
+        display: block;
+        margin-top: 0.35rem;
+        font-size: 0.78rem;
+        line-height: 1.4;
+        color: rgba(255, 255, 255, 0.55);
+    }
+
+    .product-section,
+    .specs-section {
+        width: min(1100px, calc(100% - 2rem));
+        margin: 0 auto;
+        padding: 5rem 0;
+    }
+
+    .product-section__header {
+        max-width: 760px;
+        margin-bottom: 2rem;
+    }
+
+    .product-section__eyebrow {
+        color: var(--green-primary);
+    }
+
+    .product-section__header h2 {
+        margin: 0;
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 4vw, 3.25rem);
+        line-height: 0.95;
+        text-transform: uppercase;
+        color: var(--green-dark);
+    }
+
+    .product-section__header p {
+        margin: 1rem 0 0;
+        font-size: 1rem;
+        line-height: 1.75;
+        color: #4d5652;
+    }
+
+    .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1px;
+        background: rgba(19, 52, 31, 0.12);
+        border: 1px solid rgba(19, 52, 31, 0.08);
+    }
+
+    .feature-card {
+        padding: 1.6rem;
+        background: #ffffff;
+    }
+
+    .feature-card h3 {
+        margin: 0 0 0.5rem;
+        color: var(--green-dark);
+        font-size: 1.05rem;
+    }
+
+    .feature-card p {
+        margin: 0;
+        color: #4d5652;
+        line-height: 1.7;
+        font-size: 0.95rem;
+    }
+
+    .applications-section {
+        background: #0c1a14;
+        padding: 5rem var(--container-padding, 1.25rem);
+    }
+
+    .applications-section__inner {
+        width: min(1100px, 100%);
+        margin: 0 auto;
+    }
+
+    .product-section__header--dark h2 {
+        color: var(--white);
+    }
+
+    .applications-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.85rem;
+    }
+
+    .application-card {
+        padding: 1.25rem;
+        border-radius: 0.75rem;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.76);
+        font-weight: 700;
+    }
+
+    .specs-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.85rem;
+    }
+
+    .spec-box {
+        padding: 1.25rem;
+        border-radius: 0.9rem;
+        background: #ffffff;
+        border: 1px solid rgba(19, 52, 31, 0.08);
+        box-shadow: 0 10px 30px rgba(16, 24, 20, 0.04);
+    }
+
+    .spec-box span {
+        display: block;
+        margin-bottom: 0.7rem;
+        font-size: 0.72rem;
+        line-height: 1.2;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        font-weight: 800;
+        color: #6c756f;
+    }
+
+    .spec-box strong {
+        display: block;
+        color: var(--green-dark);
+        line-height: 1.45;
+    }
+
+    .product-cta {
+        padding: 5rem var(--container-padding, 1.25rem);
+        background: var(--green-primary);
+        text-align: center;
+    }
+
+    .product-cta__inner {
+        width: min(760px, 100%);
+        margin: 0 auto;
+    }
+
+    .product-cta h2 {
+        margin: 0;
+        font-family: var(--font-display);
+        font-size: clamp(2.1rem, 4vw, 3.5rem);
+        line-height: 0.95;
+        text-transform: uppercase;
+        color: var(--white);
+    }
+
+    .product-cta p {
+        margin: 1rem auto 0;
+        max-width: 620px;
+        line-height: 1.75;
+        color: rgba(255, 255, 255, 0.78);
+    }
+
+    .product-cta a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 1.6rem;
+        min-height: 3rem;
+        padding: 0.9rem 1.4rem;
+        border-radius: 0.35rem;
+        background: #ffffff;
+        color: var(--green-dark);
+        font-weight: 800;
+        transition: transform 0.2s ease;
+    }
+
+    .product-cta a:hover {
+        transform: translateY(-1px);
+    }
+    .product-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  background: #0c1a14;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.product-tab {
+  padding: 10px 20px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.product-tab.active {
+  color: #97C459;
+  border-bottom-color: #97C459;
+}
+
+    @media (max-width: 900px) {
+        .product-hero__inner {
+            grid-template-columns: 1fr;
+            min-height: auto;
+            padding: 4.5rem 0;
+        }
+
+        .product-stats,
+        .specs-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .applications-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 640px) {
+        .product-hero__inner {
+            width: min(100% - 1.25rem, 1200px);
+            padding: 4rem 0;
+        }
+
+        .product-hero__actions {
+            flex-direction: column;
+        }
+
+        .product-btn {
+            width: 100%;
+        }
+
+        .product-stats,
+        .feature-grid,
+        .applications-grid,
+        .specs-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .product-stat {
+            border-right: 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .product-stat:last-child {
+            border-bottom: 0;
+        }
+
+        .product-section,
+        .specs-section {
+            padding: 4rem 0;
+        }
+    }
+</style>

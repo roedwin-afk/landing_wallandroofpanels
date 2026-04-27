@@ -193,13 +193,286 @@ export const es: TranslationKeys = {
     blog: "Blog",
   },
   blog: {
-        tagline: 'Recursos Técnicos',
-        title_line1: 'Conocimiento',
-        title_line2: 'Constructivo',
-        description:
-            'Guías prácticas sobre instalación de paneles, rendimiento estructural, aislamiento acústico, resistencia a la intemperie y cargas en pisos — para arquitectos, ingenieros y constructores.',
-        btncta: 'Leer artículo',
-        btn_next: 'Siguiente',
-        btn_prev: 'Anterior',
+    tagline: 'Recursos Técnicos',
+    title_line1: 'Conocimiento',
+    title_line2: 'Constructivo',
+    description:
+      'Guías prácticas sobre instalación de paneles, rendimiento estructural, aislamiento acústico, resistencia a la intemperie y cargas en pisos — para arquitectos, ingenieros y constructores.',
+    btncta: 'Leer artículo',
+    btn_next: 'Siguiente',
+    btn_prev: 'Anterior',
+  },
+  productPages: {
+    tabs: {
+      roof: "Panel de techo",
+      wall: "Panel de muro",
+      cold: "Panel para cuarto frío",
     },
+    roofPanel: {
+      eyebrow: "Panel aislado para techo",
+      title: "Paneles de techo de alto rendimiento para edificios industriales",
+      accent: "paneles de techo",
+      description:
+        "Paneles aislados para techo diseñados para instalación rápida, eficiencia térmica y cerramiento confiable en proyectos industriales, comerciales y de almacenamiento en frío.",
+
+      primaryCta: "Solicitar cotización",
+      secondaryCta: "Descargar ficha técnica",
+
+      badges: ["Aislamiento térmico", "Instalación rápida", "Cubiertas industriales"],
+
+      stats: [
+        {
+          value: "PU",
+          label: "Núcleo rígido de poliuretano",
+        },
+        {
+          value: "Rápido",
+          label: "Instalación modular de cubierta",
+        },
+        {
+          value: "Acero",
+          label: "Láminas pre-pintadas",
+        },
+        {
+          value: "B2B",
+          label: "Uso industrial y comercial",
+        },
+      ],
+
+      overview: {
+        eyebrow: "Resumen del producto",
+        title: "Diseñado para cerramientos de techo eficientes",
+        description:
+          "Los paneles de techo combinan caras exteriores de acero con un núcleo aislante rígido de poliuretano, creando un sistema liviano y eficiente para cubiertas que requieren durabilidad, control térmico e instalación rápida.",
+      },
+
+      features: [
+        {
+          title: "Desempeño térmico",
+          description:
+            "El núcleo aislante continuo ayuda a reducir la transferencia de calor y mejora el control de temperatura dentro del edificio.",
+        },
+        {
+          title: "Menor tiempo de instalación",
+          description:
+            "La construcción con paneles ayuda a acelerar el cerramiento del techo frente a sistemas tradicionales de múltiples capas.",
+        },
+        {
+          title: "Acabado exterior resistente",
+          description:
+            "Las láminas de acero pre-pintado ofrecen una superficie limpia y resistente para ambientes industriales y comerciales exigentes.",
+        },
+        {
+          title: "Adaptabilidad por proyecto",
+          description:
+            "Adecuado para bodegas, áreas de producción, centros logísticos, edificios agrícolas y proyectos de almacenamiento en frío.",
+        },
+      ],
+
+      applications: {
+        eyebrow: "Aplicaciones",
+        title: "Ideal para proyectos de techo exigentes",
+        items: [
+          "Bodegas industriales",
+          "Plantas de manufactura",
+          "Centros logísticos",
+          "Edificios de almacenamiento en frío",
+          "Estructuras agrícolas",
+          "Proyectos comerciales de cubierta",
+        ],
+      },
+
+      specs: {
+        eyebrow: "Datos técnicos",
+        title: "Especificaciones generales del panel de techo",
+        items: [
+          {
+            label: "Material del núcleo",
+            value: "Espuma rígida de poliuretano",
+          },
+          {
+            label: "Caras exteriores",
+            value: "Láminas de acero pre-pintado",
+          },
+          {
+            label: "Uso",
+            value: "Sistemas de techo y cerramiento",
+          },
+          {
+            label: "Instalación",
+            value: "Ensamble modular de paneles",
+          },
+        ],
+      },
+
+      cta: {
+        title: "¿Necesitas paneles de techo para tu próximo proyecto?",
+        description:
+          "Envíanos los detalles de tu proyecto y nuestro equipo te ayudará a elegir el sistema de panel aislado adecuado.",
+        button: "Solicitar cotización",
+      },
+    },
+    wallPanel: {
+      eyebrow: "Panel aislado para muro",
+      title: "Paneles de muro de alto rendimiento para cerramientos industriales",
+      accent: "paneles de muro",
+      description:
+        "Paneles aislados para muro diseñados para eficiencia térmica, cerramientos limpios e instalación rápida en proyectos industriales, comerciales y de almacenamiento en frío.",
+
+      primaryCta: "Solicitar cotización",
+      secondaryCta: "Descargar ficha técnica",
+
+      badges: ["Cerramiento de muros", "Aislamiento térmico", "Acabado limpio"],
+
+      stats: [
+        { value: "PU", label: "Núcleo rígido de poliuretano" },
+        { value: "Modular", label: "Instalación rápida de muros" },
+        { value: "Acero", label: "Láminas pre-pintadas" },
+        { value: "B2B", label: "Uso industrial y comercial" },
+      ],
+
+      overview: {
+        eyebrow: "Resumen del producto",
+        title: "Diseñado para cerramientos de muro eficientes",
+        description:
+          "Los paneles de muro combinan caras de acero con un núcleo aislante rígido de poliuretano, creando un sistema duradero, liviano y eficiente para cerramientos.",
+      },
+
+      features: [
+        {
+          title: "Barrera térmica eficiente",
+          description:
+            "El aislamiento continuo ayuda a reducir la transferencia de calor y mejora el control de temperatura interior.",
+        },
+        {
+          title: "Acabado arquitectónico limpio",
+          description:
+            "Las láminas pre-pintadas ofrecen una superficie uniforme y resistente tanto interior como exterior.",
+        },
+        {
+          title: "Instalación modular rápida",
+          description:
+            "La construcción con paneles reduce significativamente el tiempo frente a sistemas tradicionales.",
+        },
+        {
+          title: "Aplicaciones versátiles",
+          description:
+            "Adecuado para edificios industriales, bodegas, fachadas, cuartos fríos y cerramientos comerciales.",
+        },
+      ],
+
+      applications: {
+        eyebrow: "Aplicaciones",
+        title: "Ideal para sistemas de muro aislado",
+        items: [
+          "Edificios industriales",
+          "Cerramientos comerciales",
+          "Cuartos fríos",
+          "Áreas de procesamiento de alimentos",
+          "Bodegas",
+          "Sistemas de fachada",
+        ],
+      },
+
+      specs: {
+        eyebrow: "Datos técnicos",
+        title: "Especificaciones del panel de muro",
+        items: [
+          { label: "Material del núcleo", value: "Espuma rígida de poliuretano" },
+          { label: "Caras externas", value: "Láminas de acero pre-pintado" },
+          { label: "Uso", value: "Muros y cerramientos" },
+          { label: "Instalación", value: "Ensamble modular de paneles" },
+        ],
+      },
+
+      cta: {
+        title: "¿Necesitas paneles de muro para tu proyecto?",
+        description:
+          "Envíanos los detalles de tu proyecto y te ayudamos a elegir el sistema adecuado.",
+        button: "Solicitar cotización",
+      },
+    },
+
+    coldRoomPanel: {
+      eyebrow: "Panel para cuarto frío",
+      title: "Paneles aislados para cuartos fríos y ambientes controlados",
+      accent: "paneles para cuarto frío",
+      description:
+        "Paneles diseñados para control de temperatura, superficies higiénicas y cerramientos eficientes en proyectos de refrigeración y almacenamiento en frío.",
+
+      primaryCta: "Solicitar cotización",
+      secondaryCta: "Descargar ficha técnica",
+
+      badges: ["Cadena de frío", "Control térmico", "Superficie higiénica"],
+
+      stats: [
+        { value: "PU", label: "Núcleo rígido de poliuretano" },
+        { value: "Frío", label: "Ambientes controlados" },
+        { value: "Acero", label: "Superficie fácil de limpiar" },
+        { value: "B2B", label: "Uso industrial y logístico" },
+      ],
+
+      overview: {
+        eyebrow: "Resumen del producto",
+        title: "Diseñados para espacios refrigerados",
+        description:
+          "Los paneles para cuarto frío permiten crear cerramientos eficientes con control térmico constante en entornos refrigerados.",
+      },
+
+      features: [
+        {
+          title: "Estabilidad térmica",
+          description:
+            "Ayudan a mantener condiciones internas constantes en espacios refrigerados.",
+        },
+        {
+          title: "Superficie higiénica",
+          description:
+            "Facilitan la limpieza en entornos de alimentos y procesos sanitarios.",
+        },
+        {
+          title: "Montaje rápido",
+          description:
+            "Sistema modular que reduce tiempos de construcción de cuartos fríos.",
+        },
+        {
+          title: "Alta durabilidad",
+          description:
+            "Diseñados para uso intensivo en logística, alimentos y almacenamiento.",
+        },
+      ],
+
+      applications: {
+        eyebrow: "Aplicaciones",
+        title: "Ideal para proyectos de refrigeración",
+        items: [
+          "Cuartos fríos",
+          "Cámaras de congelación",
+          "Procesamiento de alimentos",
+          "Bodegas refrigeradas",
+          "Centros de distribución",
+          "Almacenamiento farmacéutico",
+        ],
+      },
+
+      specs: {
+        eyebrow: "Datos técnicos",
+        title: "Especificaciones del panel para cuarto frío",
+        items: [
+          { label: "Material del núcleo", value: "Espuma rígida de poliuretano" },
+          { label: "Caras externas", value: "Láminas de acero pre-pintado" },
+          { label: "Uso", value: "Cuartos fríos y ambientes controlados" },
+          { label: "Instalación", value: "Sistema modular aislado" },
+        ],
+      },
+
+      cta: {
+        title: "¿Necesitas paneles para cuarto frío?",
+        description:
+          "Envíanos tu proyecto y te ayudamos a seleccionar la mejor solución.",
+        button: "Solicitar cotización",
+      },
+    },
+  },
+
 };

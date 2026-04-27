@@ -1,0 +1,21 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { useTranslations } from '../i18n/utils';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import ProductPage from '../components/ProductPage.astro';
+
+const t = useTranslations('en');
+---
+
+<Layout
+  title="Products | WallAndRoofPanels.com"
+  description="Explore insulated wall panels, roof panels, and cold room panel systems for industrial and commercial projects."
+>
+	<Nav t={t} lang="en" />
+
+	<ProductPage t={t} lang='en' />
+	
+	<Footer t={t} lang='en' />
+
+</Layout>

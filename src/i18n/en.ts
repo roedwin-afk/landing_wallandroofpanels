@@ -200,15 +200,287 @@ export const en = {
     submit: "Send message",
   },
   blog: {
-        tagline: 'Technical Resources',
-        title_line1: 'Building',
-        title_line2: 'Insights',
-        description:
-            'Practical knowledge on panel installation, structural performance, acoustic insulation, and weatherproofing — for architects, civil engineers, and industrial building owners.',
-        btncta: 'Read article',
-        btn_next: 'Next',
-        btn_prev: 'Previous',
+    tagline: 'Technical Resources',
+    title_line1: 'Building',
+    title_line2: 'Insights',
+    description:
+      'Practical knowledge on panel installation, structural performance, acoustic insulation, and weatherproofing — for architects, civil engineers, and industrial building owners.',
+    btncta: 'Read article',
+    btn_next: 'Next',
+    btn_prev: 'Previous',
+  },
+  productPages: {
+    tabs: {
+      roof: "Roof Panel",
+      wall: "Wall Panel",
+      cold: "Cold Room Panel",
     },
+    roofPanel: {
+      eyebrow: "Insulated roof panel",
+      title: "High-performance roof panels for industrial buildings",
+      accent: "roof panels",
+      description:
+        "Insulated roof panels designed for fast installation, thermal efficiency, and reliable enclosure in industrial, commercial, and cold storage projects.",
+
+      primaryCta: "Request a quote",
+      secondaryCta: "Download technical sheet",
+
+      badges: ["Thermal insulation", "Fast installation", "Industrial roofing"],
+
+      stats: [
+        {
+          value: "PU",
+          label: "Rigid polyurethane core",
+        },
+        {
+          value: "Fast",
+          label: "Modular roof installation",
+        },
+        {
+          value: "Steel",
+          label: "Pre-painted steel facings",
+        },
+        {
+          value: "B2B",
+          label: "Industrial and commercial use",
+        },
+      ],
+
+      overview: {
+        eyebrow: "Product overview",
+        title: "Built for efficient roof enclosure",
+        description:
+          "Roof panels combine exterior steel facings with a rigid polyurethane insulating core, creating a lightweight and efficient system for roofing applications that require durability, thermal control, and fast installation.",
+      },
+
+      features: [
+        {
+          title: "Thermal performance",
+          description:
+            "Continuous insulated core helps reduce heat transfer and supports better temperature control inside the building.",
+        },
+        {
+          title: "Reduced installation time",
+          description:
+            "Panelized construction helps speed up roof enclosure compared to traditional multilayer roofing systems.",
+        },
+        {
+          title: "Durable exterior finish",
+          description:
+            "Pre-painted steel facings provide a clean, resistant surface for demanding industrial and commercial environments.",
+        },
+        {
+          title: "Project adaptability",
+          description:
+            "Suitable for warehouses, production areas, logistics buildings, agricultural facilities, and cold storage projects.",
+        },
+      ],
+
+      applications: {
+        eyebrow: "Applications",
+        title: "Ideal for demanding roof projects",
+        items: [
+          "Industrial warehouses",
+          "Manufacturing facilities",
+          "Logistics centers",
+          "Cold storage buildings",
+          "Agricultural structures",
+          "Commercial roofing projects",
+        ],
+      },
+
+      specs: {
+        eyebrow: "Technical data",
+        title: "Roof panel specifications at a glance",
+        items: [
+          {
+            label: "Core material",
+            value: "Rigid polyurethane foam",
+          },
+          {
+            label: "Outer facings",
+            value: "Pre-painted steel sheets",
+          },
+          {
+            label: "Use",
+            value: "Roofing and enclosure systems",
+          },
+          {
+            label: "Installation",
+            value: "Modular panel assembly",
+          },
+        ],
+      },
+
+      cta: {
+        title: "Need roof panels for your next project?",
+        description:
+          "Send us your project details and our team will help you choose the right insulated roof panel system.",
+        button: "Request a quote",
+      },
+    },
+    wallPanel: {
+      eyebrow: "Insulated wall panel",
+      title: "High-performance wall panels for industrial enclosures",
+      accent: "wall panels",
+      description:
+        "Insulated wall panels designed for thermal efficiency, clean enclosure, and fast installation in industrial, commercial, and cold storage projects.",
+
+      primaryCta: "Request a quote",
+      secondaryCta: "Download technical sheet",
+
+      badges: ["Wall enclosure", "Thermal insulation", "Clean finish"],
+
+      stats: [
+        { value: "PU", label: "Rigid polyurethane core" },
+        { value: "Modular", label: "Fast wall installation" },
+        { value: "Steel", label: "Pre-painted steel facings" },
+        { value: "B2B", label: "Industrial and commercial use" },
+      ],
+
+      overview: {
+        eyebrow: "Product overview",
+        title: "Built for efficient wall enclosure",
+        description:
+          "Wall panels combine steel facings with a rigid polyurethane insulating core to create a durable, lightweight, and thermally efficient enclosure system.",
+      },
+
+      features: [
+        {
+          title: "Efficient thermal barrier",
+          description:
+            "Continuous insulation helps reduce heat transfer and supports better indoor temperature control.",
+        },
+        {
+          title: "Clean architectural finish",
+          description:
+            "Pre-painted steel facings provide a neat and durable exterior and interior surface.",
+        },
+        {
+          title: "Fast modular assembly",
+          description:
+            "Panelized construction helps reduce installation time compared to traditional wall systems.",
+        },
+        {
+          title: "Versatile applications",
+          description:
+            "Suitable for industrial buildings, warehouses, façades, cold rooms, and commercial enclosures.",
+        },
+      ],
+
+      applications: {
+        eyebrow: "Applications",
+        title: "Ideal for insulated wall systems",
+        items: [
+          "Industrial buildings",
+          "Commercial enclosures",
+          "Cold rooms",
+          "Food processing areas",
+          "Warehouses",
+          "Façade systems",
+        ],
+      },
+
+      specs: {
+        eyebrow: "Technical data",
+        title: "Wall panel specifications at a glance",
+        items: [
+          { label: "Core material", value: "Rigid polyurethane foam" },
+          { label: "Outer facings", value: "Pre-painted steel sheets" },
+          { label: "Use", value: "Wall and enclosure systems" },
+          { label: "Installation", value: "Modular panel assembly" },
+        ],
+      },
+
+      cta: {
+        title: "Need wall panels for your next project?",
+        description:
+          "Send us your project details and our team will help you choose the right insulated wall panel system.",
+        button: "Request a quote",
+      },
+    },
+
+    coldRoomPanel: {
+      eyebrow: "Cold room panel",
+      title: "Insulated panels for cold rooms and controlled environments",
+      accent: "cold room panels",
+      description:
+        "Cold room panels designed to support temperature control, hygienic surfaces, and efficient enclosure for food, logistics, and cold storage projects.",
+
+      primaryCta: "Request a quote",
+      secondaryCta: "Download technical sheet",
+
+      badges: ["Cold storage", "Temperature control", "Hygienic surface"],
+
+      stats: [
+        { value: "PU", label: "Rigid polyurethane core" },
+        { value: "Cold", label: "Controlled environments" },
+        { value: "Steel", label: "Easy-clean steel facings" },
+        { value: "B2B", label: "Food, logistics, and storage use" },
+      ],
+
+      overview: {
+        eyebrow: "Product overview",
+        title: "Designed for temperature-controlled spaces",
+        description:
+          "Cold room panels use an insulated polyurethane core and durable steel facings to help create efficient enclosures for refrigerated and controlled environments.",
+      },
+
+      features: [
+        {
+          title: "Temperature stability",
+          description:
+            "Insulated panel construction helps maintain stable internal conditions in refrigerated spaces.",
+        },
+        {
+          title: "Hygienic enclosure",
+          description:
+            "Smooth steel surfaces support easier cleaning and maintenance in food-related environments.",
+        },
+        {
+          title: "Fast cold room assembly",
+          description:
+            "Modular panels help speed up the construction of cold rooms and refrigerated storage areas.",
+        },
+        {
+          title: "Commercial-grade durability",
+          description:
+            "Designed for demanding cold storage, food processing, and logistics applications.",
+        },
+      ],
+
+      applications: {
+        eyebrow: "Applications",
+        title: "Ideal for cold storage projects",
+        items: [
+          "Cold rooms",
+          "Freezer rooms",
+          "Food processing areas",
+          "Refrigerated warehouses",
+          "Distribution centers",
+          "Pharmaceutical storage",
+        ],
+      },
+
+      specs: {
+        eyebrow: "Technical data",
+        title: "Cold room panel specifications at a glance",
+        items: [
+          { label: "Core material", value: "Rigid polyurethane foam" },
+          { label: "Outer facings", value: "Pre-painted steel sheets" },
+          { label: "Use", value: "Cold rooms and controlled environments" },
+          { label: "Installation", value: "Modular insulated enclosure" },
+        ],
+      },
+
+      cta: {
+        title: "Need panels for a cold room project?",
+        description:
+          "Send us your project details and our team will help you choose the right insulated cold room panel system.",
+        button: "Request a quote",
+      },
+    },
+  },
 } as const;
 
 // Convierte todos los string literals a string genérico
