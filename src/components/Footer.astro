@@ -32,7 +32,7 @@ const base = import.meta.env.BASE_URL + (lang === "en" ? "" : `${lang}/`);
       />
     </a>
 
-    <Menu t={t} lang={lang} variant="footer" />
+    <Menu t={t} lang={lang} variant="footer" class="footer__menu" />
 
     <p class="footer__copy">{t.footer.copy}</p>
   </div>
@@ -84,20 +84,38 @@ const base = import.meta.env.BASE_URL + (lang === "en" ? "" : `${lang}/`);
   }
 
   @media (max-width: 900px) {
-    .footer__inner {
-      grid-template-columns: 1fr;
-      text-align: center;
-    }
-
-    .footer__links {
-      justify-content: center;
-    }
-
-    .footer__copy {
-      text-align: center;
-      white-space: normal;
-    }
+  .footer {
+    padding: 2.5rem var(--container-padding, 1.25rem); /* más aire */
   }
+
+  .footer__inner {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    align-items: start;
+    text-align: left;
+    gap: 1.5rem;
+  }
+
+  .footer__brand {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .footer__menu {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    align-items: flex-end;
+  }
+
+  .footer__copy {
+    grid-column: 1;
+    grid-row: 2;
+    text-align: left;
+    white-space: normal;
+    color: rgba(255, 255, 255, 0.45); /* un poco más visible */
+    font-size: 0.75rem;
+  }
+}
 
   @media (max-width: 520px) {
     .footer {

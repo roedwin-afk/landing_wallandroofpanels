@@ -4,14 +4,16 @@ import type { TranslationKeys } from "../i18n/en";
 interface Props {
   t: TranslationKeys;
   lang?: "en" | "es";
-  variant?: "nav" | "footer";
+  variant?: "nav" | "footer" | "mobile";
+  class?: string;
 }
 
 const base = import.meta.env.BASE_URL;
-
-const { t, lang = "en", variant = "nav" } = Astro.props;
+const { t, lang = "en", variant = "nav", class: className } = Astro.props;
 
 const contactHref = lang === "es" ? `${base}es/contact/` : `${base}contact/`;
+const alternateLang = lang === "en" ? "es" : "en";
+const alternatePath = lang === "es" ? base : `${base}es/`;
 
 const links = [
   {
@@ -31,13 +33,19 @@ const links = [
   },
   {
     label: t.menu.contact,
-    href: lang === "en" ? `${base}contact/` : `${base}es/contact/`,
+    href: contactHref,
   },
 ];
+
+const isMobile = variant === "mobile";
 ---
 
-<nav class:list={["menu", `menu--${variant}`]} aria-label="Main navigation">
-  <!-- <p style="color: red;">{base} - {lang}</p> -->
+<nav
+  class:list={["menu", `menu--${variant}`, className]}
+  aria-label="Main navigation"
+  id={isMobile ? "mobile-menu" : undefined}
+  aria-hidden={isMobile ? "true" : undefined}
+>
   {
     links.map((link) => (
       <a
@@ -49,6 +57,16 @@ const links = [
       </a>
     ))
   }
+  {isMobile && (
+    <>
+      <a href={alternatePath} class="menu__link menu__link--lang">
+        {alternateLang.toUpperCase()} — Switch language
+      </a>
+      <a href={contactHref} class="menu__link menu__link--cta">
+        {t.nav.cta}
+      </a>
+    </>
+  )}
 </nav>
 
 <style>
@@ -66,38 +84,110 @@ const links = [
     transition: color 0.2s ease;
   }
 
+  /* NAV */
   .menu--nav {
     justify-content: center;
   }
-
   .menu--nav .menu__link {
     color: rgba(255, 255, 255, 0.72);
   }
-
   .menu--nav .menu__link:hover {
     color: var(--green-light);
   }
 
+  /* FOOTER */
   .menu--footer {
     justify-content: center;
   }
-
   .menu--footer .menu__link {
     font-size: 0.8rem;
     font-weight: 500;
     color: rgba(255, 255, 255, 0.48);
   }
-
   .menu--footer .menu__link:hover {
     color: var(--green-light);
   }
 
-  @media (max-width: 768px) {
-  .menu--nav {
+  /* MOBILE */
+  .menu--mobile {
     display: none;
+    flex-direction: column;
+    background: #0c1a14;
+    padding: 1rem 2rem 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    position: sticky;
+    top: 60px;
+    z-index: 99;
+    gap: 0;
+  }
+  .menu--mobile.open {
+    display: flex;
+  }
+  .menu--mobile .menu__link {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 15px;
+    font-weight: 500;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  .menu--mobile .menu__link:hover {
+    color: var(--green-light);
+  }
+  .menu--mobile .menu__link--lang {
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 13px;
+  }
+  .menu--mobile .menu__link--cta {
+    margin-top: 1rem;
+    background: #3b6d11;
+    color: #fff;
+    padding: 12px 0;
+    text-align: center;
+    border-radius: 4px;
+    font-weight: 600;
+    border-bottom: none;
+  }
+
+  @media (max-width: 900px) {
+  .footer__inner {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    align-items: start;
+    text-align: left;
+    gap: 1rem;
+  }
+
+  /* Logo arriba izquierda */
+  .footer__brand {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  /* Links arriba derecha, ocupando ambas filas */
+  .footer__menu {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    align-items: flex-end;
+  }
+  .menu--footer .menu__link {
+    color: rgba(255, 255, 255, 0.65); /* antes 0.48 */
+    font-size: 0.875rem;             /* un poco más grandes */
+  }
+
+  /* Copyright abajo izquierda */
+  .footer__copy {
+    grid-column: 1;
+    grid-row: 2;
+    text-align: left;
+    white-space: normal;
   }
 }
 
+  @media (max-width: 768px) {
+    .menu--nav {
+      display: none;
+    }
+  }
   @media (max-width: 640px) {
     .menu--footer {
       flex-direction: column;

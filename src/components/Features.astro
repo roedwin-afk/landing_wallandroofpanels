@@ -172,7 +172,7 @@ const features = [
 
   @media (max-width: 960px) {
     .features {
-      padding: 0 0 4rem;
+      padding: 0 1rem 4rem;
     }
 
     .features__grid {
@@ -187,6 +187,9 @@ const features = [
   @media (max-width: 640px) {
     .features__inner {
       width: min(100% - 1.25rem, 1200px);
+    }
+    .features__grid {
+      grid-template-columns: 1fr;
     }
 
     .features__head {

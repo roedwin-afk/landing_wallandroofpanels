@@ -80,16 +80,8 @@ const alternatePath =
   </div>
 </header>
 
-<div class="mobile-menu" id="mobile-menu" aria-hidden="true">
-  <a href={`${homeHref}#products`}>{t.nav.products}</a>
-  <a href={`${homeHref}#applications`}>{t.nav.applications}</a>
-  <a href={`${homeHref}#specs`}>{t.nav.specs}</a>
-  <a href={contactHref}>{t.nav.contact}</a>
-  <a href={alternatePath} class="mobile-lang">
-    {alternateLang.toUpperCase()} — Switch language
-  </a>
-  <a href={contactHref} class="mobile-cta">{t.nav.cta}</a>
-</div>
+<Menu t={t} lang={lang} variant="mobile" />
+
 <style>
   .nav {
     background: #0c1a14;
