@@ -28,55 +28,57 @@ const alternatePath =
 ---
 
 <header class="nav">
-  <div class="nav-logo">
-    <a href={homeHref} class="navbar__brand" aria-label="Go to home">
-      <Image
-        src={logo}
-        alt="Panel sándwich para techo industrial"
-        width={200}
-        height={50}
-        class="nav__logo-img"
-        format="webp"
-        quality={85}
-        loading="eager"
-      />
-    </a>
-  </div>
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <a href={homeHref} class="navbar__brand" aria-label="Go to home">
+        <Image
+          src={logo}
+          alt="Panel sándwich para techo industrial"
+          width={200}
+          height={50}
+          class="nav__logo-img"
+          format="svg"
+          quality={85}
+          loading="eager"
+        />
+      </a>
+    </div>
 
-  <Menu t={t} lang={lang} variant="nav" />
+    <Menu t={t} lang={lang} variant="nav" />
 
-  <div class="nav-right">
-    <!-- Cambia el link por un span si está deshabilitado -->
-    {
-      disableLangSwitch ? (
-        <span class="lang-switch lang-switch--disabled">
-          {alternateLang.toUpperCase()}
-        </span>
-      ) : (
-        <a
-          href={alternatePath}
-          class="lang-switch"
-          aria-label="Switch language"
-        >
-          {alternateLang.toUpperCase()}
-        </a>
-      )
-    }
+    <div class="nav-right">
+      <!-- Cambia el link por un span si está deshabilitado -->
+      {
+        disableLangSwitch ? (
+          <span class="lang-switch lang-switch--disabled">
+            {alternateLang.toUpperCase()}
+          </span>
+        ) : (
+          <a
+            href={alternatePath}
+            class="lang-switch"
+            aria-label="Switch language"
+          >
+            {alternateLang.toUpperCase()}
+          </a>
+        )
+      }
 
-    <a href={contactHref} class="nav-cta">
-      {t.nav.cta}
-    </a>
+      <a href={contactHref} class="nav-cta">
+        {t.nav.cta}
+      </a>
 
-    <button
-      class="hamburger"
-      id="hamburger"
-      aria-label="Open menu"
-      aria-expanded="false"
-    >
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
+      <button
+        class="hamburger"
+        id="hamburger"
+        aria-label="Open menu"
+        aria-expanded="false"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
   </div>
 </header>
 
@@ -95,17 +97,17 @@ const alternatePath =
     z-index: 100;
   }
 
-  .nav-logo {
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 18px;
-    color: #fff;
-    letter-spacing: 0.5px;
-    white-space: nowrap;
+  .nav-inner {
+    width: min(1200px, calc(100% - 2rem));
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
+
   .nav__logo-img {
     display: block;
-    height: 2.5rem;
+    height: 3.5rem;
     width: auto;
     filter: brightness(0) invert(1);
   }

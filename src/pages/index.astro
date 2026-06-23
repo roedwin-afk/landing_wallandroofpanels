@@ -1,7 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { useTranslations } from '../i18n/utils';
-import Nav from '../components/Nav.astro';
 import Hero from '../components/Hero.astro';
 import Stats from '../components/Stats.astro';
 import Products from '../components/Products.astro'
@@ -9,7 +8,6 @@ import Features from '../components/Features.astro';
 import UseCases from '../components/UseCases.astro';
 import Specs from '../components/Specs.astro';
 import CTA from '../components/CTA.astro';
-import Footer from '../components/Footer.astro';
 
 const t = useTranslations('en');
 ---
@@ -18,7 +16,6 @@ const t = useTranslations('en');
   title="Wall & Roof Panels — High Performance Structural Insulated Panels"
   description="Fast installation, superior thermal insulation and structural strength for industrial buildings, warehouses and commercial facilities."
 >
-	<Nav t={t} lang="en" />
 
 	<Hero t={t} />
 	<Stats t={t} />
@@ -28,6 +25,5 @@ const t = useTranslations('en');
 	<Specs t={t} />
 	<CTA t={t} />
 	
-	<Footer t={t} lang='en' />
 
 </Layout>
