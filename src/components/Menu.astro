@@ -35,6 +35,10 @@ const links = [
     label: t.menu.contact,
     href: contactHref,
   },
+  {
+    label: t.menu.faq,
+    href: lang === "en" ? `${base}faq/` : `${base}es/faq/`,
+  },
 ];
 
 const isMobile = variant === "mobile";

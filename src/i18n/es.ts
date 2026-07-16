@@ -191,6 +191,7 @@ export const es: TranslationKeys = {
     contact: "Contacto",
     downloads: "Descargas",
     blog: "Blog",
+    faq: "FAQ",
   },
   blog: {
     tagline: 'Recursos Técnicos',
@@ -474,5 +475,53 @@ export const es: TranslationKeys = {
       },
     },
   },
-
+  // FAQ
+  faq: {
+    eyebrow: "Preguntas frecuentes",
+    title: "Todo lo que necesitas saber sobre paneles aislados",
+    intro:
+      "Respuestas técnicas para arquitectos, contratistas y responsables de instalaciones que evalúan paneles estructurales aislados para muros, techos y proyectos de cadena de frío.",
+    items: [
+      {
+        q: "¿Qué es un panel estructural aislado (panel sándwich)?",
+        a: "Un panel estructural aislado, o panel sándwich, está formado por un núcleo rígido de espuma aislante unido entre dos láminas exteriores, típicamente de acero prepintado. El núcleo aporta aislamiento térmico y las láminas de acero aportan resistencia estructural, resistencia a la intemperie y un acabado terminado — todo en un solo componente de envolvente constructiva.",
+      },
+      {
+        q: "¿Cuál es la diferencia entre núcleo PIR, PUR y lana mineral?",
+        a: "Los núcleos PUR (poliuretano) ofrecen buen desempeño térmico a menor costo, con conductividad térmica de alrededor de 0.022–0.028 W/m·K. Los núcleos PIR (poliisocianurato) logran una conductividad ligeramente mejor, cerca de 0.021–0.025 W/m·K, y un comportamiento al fuego notablemente superior, alcanzando comúnmente Euroclase B según EN 13501-1. Los núcleos de lana mineral (rock wool) sacrifican algo de eficiencia térmica a cambio de resistencia al fuego de hasta 240 minutos y mejor desempeño acústico, por lo que suelen ser la opción estándar cuando la separación contra incendio o el control de ruido es prioritario.",
+      },
+      {
+        q: "¿Qué espesor de panel necesito para mi proyecto?",
+        a: "El espesor se selecciona según el desempeño térmico requerido y la luz estructural, no es una regla fija. Como guía general: 40–50 mm es adecuado para muros de bodega estándar, 75–100 mm para techos y cerramientos comerciales con mayores exigencias de aislamiento, y 100–150 mm o más para cámaras frigoríficas y cuartos de congelación. Nuestro equipo confirma el espesor exacto por proyecto según luz, carga y valor U objetivo.",
+      },
+      {
+        q: "¿Cómo se clasifica la resistencia al fuego de los paneles aislados?",
+        a: "El comportamiento al fuego se clasifica según EN 13501-1 (Euroclase A1 a F para reacción al fuego) y, para la duración de resistencia al fuego, mediante clasificaciones EI medidas en minutos. Los paneles con núcleo PIR suelen alcanzar Euroclase B, mientras que los paneles con núcleo de lana mineral pueden llegar de 30 a 240 minutos de resistencia al fuego (EI 30–EI 240), según espesor y densidad.",
+      },
+      {
+        q: "¿Cuál es la diferencia entre panel de muro y panel de techo?",
+        a: "Los paneles de muro usan un sistema de fijación oculta o vista optimizado para revestimiento vertical, diseñado principalmente para cargas de viento. Los paneles de techo usan un perfil nervado con manejo de agua integrado (traslapes, selladores y detalles según pendiente) y están clasificados para cargas distribuidas más altas — comúnmente hasta 300 kg/m² — para soportar cargas vivas, nieve y tránsito de mantenimiento.",
+      },
+      {
+        q: "¿Cuánto tiempo toma la instalación?",
+        a: "Los paneles usan un sistema de unión macho-hembra tipo click que agiliza notablemente el montaje frente a sistemas de techado tradicional o muros de block. Como referencia, una cuadrilla de 4 personas puede cerrar en promedio un techo de 500 m² en menos de 3 días.",
+      },
+      {
+        q: "¿Los paneles aislados son adecuados para cadena de frío y cuartos de congelación?",
+        a: "Sí. Los núcleos de espuma de alta densidad (PUR o PIR) se usan en ambientes de almacenamiento refrigerado y congelado hasta -30°C. Las uniones del panel se sellan con perfiles macho-hembra y empaques para prevenir puentes térmicos y condensación en las juntas.",
+      },
+      {
+        q: "¿Cuántos fijadores se necesitan por metro cuadrado?",
+        a: "Una estimación general es de aproximadamente 1.1 fijadores por metro cuadrado de panel, aunque la cantidad exacta, separación y distribución dependen del cálculo de carga de viento, la luz del panel y el diseño del ingeniero del proyecto.",
+      },
+      {
+        q: "¿Cuál es la vida útil esperada de los paneles sándwich aislados?",
+        a: "Instalados y mantenidos correctamente, los paneles suelen durar de 20 a más de 30 años. La vida útil depende del sistema de recubrimiento del acero (Galvalume con acabado Kynar 500 extiende la resistencia a UV y corrosión), el sellado correcto de las juntas, y la exposición ambiental del edificio.",
+      },
+      {
+        q: "¿Los paneles aislados ofrecen aislamiento acústico?",
+        a: "Sí. Según el material del núcleo y el espesor, los paneles suelen alcanzar STC 45–52, adecuado para bodegas y espacios de manufactura con operaciones sensibles al ruido. Los núcleos de lana mineral generalmente superan a los núcleos PUR/PIR en atenuación de sonido.",
+      },
+    ],
+  },
 };

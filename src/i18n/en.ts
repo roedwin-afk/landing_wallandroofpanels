@@ -181,6 +181,7 @@ export const en = {
     contact: "Contact",
     downloads: "Downloads",
     blog: "Blog",
+    faq: "FAQ",
   },
   form_contact: {
     eyebrow: "Contact us",
@@ -480,6 +481,55 @@ export const en = {
         button: "Request a quote",
       },
     },
+  },
+  // FAQ
+  faq: {
+    eyebrow: "Frequently asked questions",
+    title: "Insulated panel questions, answered",
+    intro:
+      "Technical answers for architects, contractors, and facility managers evaluating structural insulated panels for walls, roofs, and cold storage projects.",
+    items: [
+      {
+        q: "What is a structural insulated (sandwich) panel?",
+        a: "A structural insulated panel, or sandwich panel, consists of a rigid insulating foam core bonded between two outer facings, typically pre-painted steel. The core provides thermal insulation and the steel facings provide structural strength, weather resistance, and a finished surface — in one single-step building envelope component.",
+      },
+      {
+        q: "What's the difference between PIR, PUR, and mineral wool core panels?",
+        a: "PUR (polyurethane) cores offer strong thermal performance at a lower cost, with thermal conductivity around 0.022–0.028 W/m·K. PIR (polyisocyanurate) cores achieve slightly better thermal conductivity, around 0.021–0.025 W/m·K, and significantly better fire behavior, commonly reaching Euroclass B under EN 13501-1. Mineral wool (rock wool) cores trade some thermal efficiency for fire resistance up to 240 minutes and better acoustic performance, making them the standard choice where fire separation or sound control is the priority.",
+      },
+      {
+        q: "What panel thickness do I need for my project?",
+        a: "Thickness is selected based on the required thermal performance and structural span, not a fixed rule. As a general guide: 40–50 mm suits standard warehouse walls, 75–100 mm suits roofs and commercial enclosures with higher insulation targets, and 100–150 mm+ suits cold storage and freezer rooms. Our team confirms exact thickness per project based on span, load, and target U-value.",
+      },
+      {
+        q: "How are insulated panels rated for fire safety?",
+        a: "Fire performance is classified under EN 13501-1 (Euroclass A1 to F for reaction to fire) and, for fire resistance duration, under EI ratings measured in minutes. PIR-core panels typically achieve Euroclass B, while mineral wool-core panels can reach 30 to 240 minutes of fire resistance (EI 30–EI 240), depending on thickness and density.",
+      },
+      {
+        q: "What's the difference between wall panels and roof panels?",
+        a: "Wall panels use a concealed or exposed fastener system optimized for vertical cladding and typically handle wind loads. Roof panels use a ribbed profile with integrated water management (laps, sealants, and slope-specific detailing) and are rated for higher distributed loads — commonly up to 300 kg/m² — to handle live loads, snow, and foot traffic during maintenance.",
+      },
+      {
+        q: "How long does installation take?",
+        a: "Panels use a click-lock tongue-and-groove joint system that speeds up assembly significantly compared to built-up roofing or block walls. As a reference, a 4-person crew can typically enclose an average 500 m² roof in under 3 days.",
+      },
+      {
+        q: "Are insulated panels suitable for cold storage and freezer rooms?",
+        a: "Yes. High-density foam cores (PUR or PIR) are used for refrigerated and frozen storage environments down to -30°C. Panel joints are sealed with tongue-and-groove profiles and gaskets to prevent thermal bridging and condensation at the seams.",
+      },
+      {
+        q: "How many fasteners are needed per square meter?",
+        a: "A general estimate is around 1.1 fasteners per square meter of panel, though the exact count, spacing, and layout depend on wind load calculations, panel span, and the project engineer's design.",
+      },
+      {
+        q: "What is the expected lifespan of insulated sandwich panels?",
+        a: "Properly installed and maintained panels commonly last 20 to 30+ years. Lifespan depends on the steel coating system (Galvalume with Kynar 500 finish extends UV and corrosion resistance), correct sealing at joints, and the building's environmental exposure.",
+      },
+      {
+        q: "Do insulated panels provide acoustic insulation?",
+        a: "Yes. Depending on core material and thickness, panels typically achieve STC 45–52, which is suitable for warehouses and manufacturing spaces with noise-sensitive operations. Mineral wool cores generally outperform PUR/PIR cores for sound attenuation.",
+      },
+    ],
   },
 } as const;
 
