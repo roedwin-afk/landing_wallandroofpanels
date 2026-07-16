@@ -1,6 +1,7 @@
 ---
 import { BlogList } from "astro-blog-kit/components";
 import { createWPClient, getStaticPathsForPages } from "astro-blog-kit/utils";
+import { resolveHero, resolveUI } from 'astro-blog-kit';
 import config from "../../../../blog.config";
 import Layout from "../../../layouts/Layout.astro";
 
@@ -12,15 +13,19 @@ export async function getStaticPaths() {
 
 const { posts, currentPage, totalPages } = Astro.props;
 
+const locale = config.locale ?? 'en';
+const hero = resolveHero(config.hero, locale);
+const ui = resolveUI(config.ui, locale);
+
 const bt = {
   blog: {
-    tagline: "Our Blog",
-    title_line1: "Latest",
-    title_line2: "Articles",
-    description: "Welcome to our blog.",
-    btncta: "Read more",
-    btn_prev: "Previous",
-    btn_next: "Next",
+    tagline:     hero.tagline,
+    title_line1: hero.titleLine1,
+    title_line2: hero.titleLine2,
+    description: hero.description,
+    btncta:      ui.readMoreLabel,
+    btn_prev:    ui.btnPrev,
+    btn_next:    ui.btnNext,
   },
 };
 

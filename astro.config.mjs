@@ -3,6 +3,8 @@ import { blogKit } from 'astro-blog-kit/integration';
 import config from './blog.config';
 import { toBlogKitConfig } from 'astro-blog-kit';
 
+import sitemap from "@astrojs/sitemap";
+
 const SITE = process.env.SITE || "https://roedwin-afk.github.io";
 const BASE = process.env.BASE || "/landing_wallandroofpanels/";
 
@@ -12,5 +14,6 @@ export default defineConfig({
   output: "static",
   integrations: [
     blogKit(toBlogKitConfig(config)),
-  ]
+    sitemap()
+  ],
 });
